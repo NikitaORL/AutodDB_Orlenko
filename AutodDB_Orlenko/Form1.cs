@@ -41,5 +41,10 @@ namespace AutodDB_Orlenko
                     .ToList();
             }
         }
+
+        private void ShopName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
