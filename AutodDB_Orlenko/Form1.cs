@@ -4,6 +4,7 @@ using AutodDB_Orlenko.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace AutodDB_Orlenko
@@ -129,5 +130,44 @@ namespace AutodDB_Orlenko
             }
         }
 
+        private void CarsAddBtn_Click(object sender, EventArgs e)
+        {
+            string Brand = textBoxBrand.Text.Trim();
+            string Model = textBoxModel.Text.Trim();
+            string RegistrationNumber = textBoxRegNumber.Text.Trim();
+
+
+            if (string.IsNullOrWhiteSpace(Brand) || string.IsNullOrWhiteSpace(Model) || string.IsNullOrWhiteSpace(RegistrationNumber))
+            {
+                MessageBox.Show("Palun siseta kõik andmed!!!");
+                return;
+            }
+
+            if (comboBoxOwner.SelectedItem == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите владельца машины!");
+                return;
+            }
+
+            using (var context = new AutoDbContext())
+            {
+                var car = new Car
+                {
+                    Brand = Brand,
+                    Model = Model,
+                    RegistrationNumber = RegistrationNumber,
+                    OwnerId = (int)comboBoxOwner.SelectedValue
+                };
+
+
+                context.Cars.Add(car);
+                context.SaveChanges();
+            }
+
+            LoadOwners();
+
+            textBoxOwnerName.Clear();
+            textBoxOwnerPhone.Clear();
+        }
     }
 }

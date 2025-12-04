@@ -46,10 +46,10 @@
             CarsDeleteBtn = new Button();
             pictureBox1 = new PictureBox();
             label6 = new Label();
-            comboBox1 = new ComboBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            comboBoxOwner = new ComboBox();
+            textBoxRegNumber = new TextBox();
+            textBoxModel = new TextBox();
+            textBoxBrand = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -200,10 +200,10 @@
             tabPage2.Controls.Add(CarsDeleteBtn);
             tabPage2.Controls.Add(pictureBox1);
             tabPage2.Controls.Add(label6);
-            tabPage2.Controls.Add(comboBox1);
-            tabPage2.Controls.Add(textBox3);
-            tabPage2.Controls.Add(textBox2);
-            tabPage2.Controls.Add(textBox1);
+            tabPage2.Controls.Add(comboBoxOwner);
+            tabPage2.Controls.Add(textBoxRegNumber);
+            tabPage2.Controls.Add(textBoxModel);
+            tabPage2.Controls.Add(textBoxBrand);
             tabPage2.Controls.Add(label5);
             tabPage2.Controls.Add(label4);
             tabPage2.Controls.Add(label3);
@@ -226,6 +226,7 @@
             CarsAddBtn.TabIndex = 23;
             CarsAddBtn.Text = "Add";
             CarsAddBtn.UseVisualStyleBackColor = false;
+            CarsAddBtn.Click += CarsAddBtn_Click;
             // 
             // CarsDeleteBtn
             // 
@@ -255,34 +256,34 @@
             label6.TabIndex = 15;
             label6.Text = "Cars:";
             // 
-            // comboBox1
+            // comboBoxOwner
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(108, 105);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 20;
+            comboBoxOwner.FormattingEnabled = true;
+            comboBoxOwner.Location = new Point(108, 105);
+            comboBoxOwner.Name = "comboBoxOwner";
+            comboBoxOwner.Size = new Size(121, 23);
+            comboBoxOwner.TabIndex = 20;
             // 
-            // textBox3
+            // textBoxRegNumber
             // 
-            textBox3.Location = new Point(240, 72);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
-            textBox3.TabIndex = 19;
+            textBoxRegNumber.Location = new Point(240, 72);
+            textBoxRegNumber.Name = "textBoxRegNumber";
+            textBoxRegNumber.Size = new Size(100, 23);
+            textBoxRegNumber.TabIndex = 19;
             // 
-            // textBox2
+            // textBoxModel
             // 
-            textBox2.Location = new Point(108, 39);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 18;
+            textBoxModel.Location = new Point(108, 39);
+            textBoxModel.Name = "textBoxModel";
+            textBoxModel.Size = new Size(100, 23);
+            textBoxModel.TabIndex = 18;
             // 
-            // textBox1
+            // textBoxBrand
             // 
-            textBox1.Location = new Point(108, 8);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
-            textBox1.TabIndex = 17;
+            textBoxBrand.Location = new Point(108, 8);
+            textBoxBrand.Name = "textBoxBrand";
+            textBoxBrand.Size = new Size(100, 23);
+            textBoxBrand.TabIndex = 17;
             // 
             // label5
             // 
@@ -395,10 +396,10 @@
         private Label label5;
         private Label label4;
         private Label label3;
-        private ComboBox comboBox1;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private ComboBox comboBoxOwner;
+        private TextBox textBoxRegNumber;
+        private TextBox textBoxModel;
+        private TextBox textBoxBrand;
         private Button CarsDeleteBtn;
         private PictureBox pictureBox1;
         private Label label6;
