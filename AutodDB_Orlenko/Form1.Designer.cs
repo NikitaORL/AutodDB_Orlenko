@@ -28,32 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
+            PictureBox pictureBox2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             dataGridViewOmanukud = new DataGridView();
             tabControl1 = new TabControl();
             Owners = new TabPage();
+            labelOwners = new Label();
             ShopName = new Label();
             DeleteBtnOwners = new Button();
             AddBtnOwners = new Button();
-            textBox1 = new TextBox();
+            textBoxOwnerName = new TextBox();
             labelNumber = new Label();
             labelFullName = new Label();
-            textBox2 = new TextBox();
-            pictureBox2 = new PictureBox();
+            textBoxOwnerPhone = new TextBox();
             tabPage2 = new TabPage();
+            CarsAddBtn = new Button();
+            CarsDeleteBtn = new Button();
+            pictureBox1 = new PictureBox();
+            label6 = new Label();
+            comboBox1 = new ComboBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            dataGridViewCars = new DataGridView();
+            label1 = new Label();
             tabPage3 = new TabPage();
+            sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            pictureBox2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
             tabControl1.SuspendLayout();
             Owners.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCars).BeginInit();
             SuspendLayout();
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.ErrorImage = Properties.Resources.Без_названия;
+            pictureBox2.Image = Properties.Resources.garaz__1_;
+            pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
+            pictureBox2.Location = new Point(525, 65);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(413, 635);
+            pictureBox2.TabIndex = 2;
+            pictureBox2.TabStop = false;
             // 
             // dataGridViewOmanukud
             // 
             dataGridViewOmanukud.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewOmanukud.Location = new Point(24, 255);
             dataGridViewOmanukud.Name = "dataGridViewOmanukud";
-            dataGridViewOmanukud.Size = new Size(825, 445);
+            dataGridViewOmanukud.Size = new Size(475, 445);
             dataGridViewOmanukud.TabIndex = 0;
             // 
             // tabControl1
@@ -69,14 +100,15 @@
             // 
             // Owners
             // 
-            Owners.BackColor = Color.DarkGray;
+            Owners.BackColor = Color.Silver;
+            Owners.Controls.Add(labelOwners);
             Owners.Controls.Add(ShopName);
             Owners.Controls.Add(DeleteBtnOwners);
             Owners.Controls.Add(AddBtnOwners);
-            Owners.Controls.Add(textBox1);
+            Owners.Controls.Add(textBoxOwnerName);
             Owners.Controls.Add(labelNumber);
             Owners.Controls.Add(labelFullName);
-            Owners.Controls.Add(textBox2);
+            Owners.Controls.Add(textBoxOwnerPhone);
             Owners.Controls.Add(pictureBox2);
             Owners.Controls.Add(dataGridViewOmanukud);
             Owners.Location = new Point(4, 24);
@@ -86,12 +118,21 @@
             Owners.TabIndex = 0;
             Owners.Text = "Owners";
             // 
+            // labelOwners
+            // 
+            labelOwners.Font = new Font("Segoe UI Black", 20F);
+            labelOwners.Location = new Point(24, 219);
+            labelOwners.Name = "labelOwners";
+            labelOwners.Size = new Size(166, 33);
+            labelOwners.TabIndex = 11;
+            labelOwners.Text = "Owners:";
+            // 
             // ShopName
             // 
             ShopName.Font = new Font("Microsoft PhagsPa", 28F);
-            ShopName.Location = new Point(387, 12);
+            ShopName.Location = new Point(525, 3);
             ShopName.Name = "ShopName";
-            ShopName.Size = new Size(462, 50);
+            ShopName.Size = new Size(430, 59);
             ShopName.TabIndex = 10;
             ShopName.Text = "ORLENKO Car Service";
             ShopName.Click += ShopName_Click;
@@ -100,75 +141,202 @@
             // 
             DeleteBtnOwners.AutoSize = true;
             DeleteBtnOwners.BackColor = Color.LightCoral;
-            DeleteBtnOwners.Location = new Point(24, 190);
+            DeleteBtnOwners.Location = new Point(24, 135);
             DeleteBtnOwners.Name = "DeleteBtnOwners";
             DeleteBtnOwners.Size = new Size(99, 45);
             DeleteBtnOwners.TabIndex = 9;
             DeleteBtnOwners.Text = "Delete";
             DeleteBtnOwners.UseVisualStyleBackColor = false;
+            DeleteBtnOwners.Click += DeleteBtnOwners_Click;
             // 
             // AddBtnOwners
             // 
             AddBtnOwners.AutoSize = true;
             AddBtnOwners.BackColor = Color.YellowGreen;
-            AddBtnOwners.Location = new Point(182, 190);
+            AddBtnOwners.Location = new Point(195, 135);
             AddBtnOwners.Name = "AddBtnOwners";
             AddBtnOwners.Size = new Size(99, 45);
             AddBtnOwners.TabIndex = 8;
             AddBtnOwners.Text = "Add";
             AddBtnOwners.UseVisualStyleBackColor = false;
+            AddBtnOwners.Click += AddBtnOwners_Click;
             // 
-            // textBox1
+            // textBoxOwnerName
             // 
-            textBox1.Location = new Point(152, 64);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(129, 23);
-            textBox1.TabIndex = 7;
+            textBoxOwnerName.Location = new Point(165, 47);
+            textBoxOwnerName.Name = "textBoxOwnerName";
+            textBoxOwnerName.Size = new Size(129, 23);
+            textBoxOwnerName.TabIndex = 7;
             // 
             // labelNumber
             // 
             labelNumber.Font = new Font("Segoe UI Black", 15F);
-            labelNumber.Location = new Point(24, 128);
+            labelNumber.Location = new Point(24, 80);
             labelNumber.Name = "labelNumber";
-            labelNumber.Size = new Size(134, 23);
+            labelNumber.Size = new Size(99, 42);
             labelNumber.TabIndex = 6;
             labelNumber.Text = "Number:";
             // 
             // labelFullName
             // 
             labelFullName.Font = new Font("Segoe UI Black", 15F);
-            labelFullName.Location = new Point(24, 57);
+            labelFullName.Location = new Point(24, 39);
             labelFullName.Name = "labelFullName";
-            labelFullName.Size = new Size(163, 30);
+            labelFullName.Size = new Size(123, 30);
             labelFullName.TabIndex = 5;
             labelFullName.Text = "Full Name:";
             // 
-            // textBox2
+            // textBoxOwnerPhone
             // 
-            textBox2.Location = new Point(152, 128);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(129, 23);
-            textBox2.TabIndex = 4;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.ErrorImage = Properties.Resources.Без_названия;
-            pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
-            pictureBox2.Location = new Point(867, 41);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(413, 659);
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
+            textBoxOwnerPhone.Location = new Point(165, 88);
+            textBoxOwnerPhone.Name = "textBoxOwnerPhone";
+            textBoxOwnerPhone.Size = new Size(129, 23);
+            textBoxOwnerPhone.TabIndex = 4;
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.Silver;
+            tabPage2.Controls.Add(CarsAddBtn);
+            tabPage2.Controls.Add(CarsDeleteBtn);
+            tabPage2.Controls.Add(pictureBox1);
+            tabPage2.Controls.Add(label6);
+            tabPage2.Controls.Add(comboBox1);
+            tabPage2.Controls.Add(textBox3);
+            tabPage2.Controls.Add(textBox2);
+            tabPage2.Controls.Add(textBox1);
+            tabPage2.Controls.Add(label5);
+            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Controls.Add(dataGridViewCars);
+            tabPage2.Controls.Add(label1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1699, 879);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Text = "Cars";
+            // 
+            // CarsAddBtn
+            // 
+            CarsAddBtn.BackColor = Color.YellowGreen;
+            CarsAddBtn.Location = new Point(140, 145);
+            CarsAddBtn.Name = "CarsAddBtn";
+            CarsAddBtn.Size = new Size(89, 45);
+            CarsAddBtn.TabIndex = 23;
+            CarsAddBtn.Text = "Add";
+            CarsAddBtn.UseVisualStyleBackColor = false;
+            // 
+            // CarsDeleteBtn
+            // 
+            CarsDeleteBtn.BackColor = Color.LightCoral;
+            CarsDeleteBtn.Location = new Point(21, 145);
+            CarsDeleteBtn.Name = "CarsDeleteBtn";
+            CarsDeleteBtn.Size = new Size(89, 45);
+            CarsDeleteBtn.TabIndex = 22;
+            CarsDeleteBtn.Text = "Delete";
+            CarsDeleteBtn.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.porshe;
+            pictureBox1.Location = new Point(588, 65);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(413, 635);
+            pictureBox1.TabIndex = 21;
+            pictureBox1.TabStop = false;
+            // 
+            // label6
+            // 
+            label6.Font = new Font("Segoe UI Black", 20F);
+            label6.Location = new Point(21, 210);
+            label6.Name = "label6";
+            label6.Size = new Size(100, 42);
+            label6.TabIndex = 15;
+            label6.Text = "Cars:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(108, 105);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 20;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(240, 72);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(100, 23);
+            textBox3.TabIndex = 19;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(108, 39);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 23);
+            textBox2.TabIndex = 18;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(108, 8);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 23);
+            textBox1.TabIndex = 17;
+            // 
+            // label5
+            // 
+            label5.Font = new Font("Segoe UI Black", 15F);
+            label5.Location = new Point(21, 97);
+            label5.Name = "label5";
+            label5.Size = new Size(100, 30);
+            label5.TabIndex = 16;
+            label5.Text = "Owner:";
+            // 
+            // label4
+            // 
+            label4.Font = new Font("Segoe UI Black", 15F);
+            label4.Location = new Point(21, 64);
+            label4.Name = "label4";
+            label4.Size = new Size(234, 33);
+            label4.TabIndex = 15;
+            label4.Text = "RegistrationNumber:";
+            label4.Click += label4_Click;
+            // 
+            // label3
+            // 
+            label3.Font = new Font("Segoe UI Black", 15F);
+            label3.Location = new Point(21, 34);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 30);
+            label3.TabIndex = 14;
+            label3.Text = "Model:";
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Segoe UI Black", 15F);
+            label2.Location = new Point(21, 3);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 28);
+            label2.TabIndex = 13;
+            label2.Text = "Brand:";
+            // 
+            // dataGridViewCars
+            // 
+            dataGridViewCars.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCars.Location = new Point(21, 255);
+            dataGridViewCars.Name = "dataGridViewCars";
+            dataGridViewCars.Size = new Size(542, 445);
+            dataGridViewCars.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.Font = new Font("Microsoft PhagsPa", 28F);
+            label1.Location = new Point(588, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(430, 59);
+            label1.TabIndex = 11;
+            label1.Text = "ORLENKO Car Service";
             // 
             // tabPage3
             // 
@@ -180,19 +348,28 @@
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
             // 
+            // sqlCommand1
+            // 
+            sqlCommand1.CommandTimeout = 30;
+            sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1311, 748);
+            ClientSize = new Size(1025, 748);
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).EndInit();
             tabControl1.ResumeLayout(false);
             Owners.ResumeLayout(false);
             Owners.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCars).EndInit();
             ResumeLayout(false);
         }
 
@@ -202,14 +379,30 @@
         private TabControl tabControl1;
         private TabPage Owners;
         private Label labelFullName;
-        private TextBox textBox2;
+        private TextBox textBoxOwnerPhone;
         private PictureBox pictureBox2;
         private TabPage tabPage2;
         private TabPage tabPage3;
         private Label labelNumber;
         private Button DeleteBtnOwners;
         private Button AddBtnOwners;
-        private TextBox textBox1;
+        private TextBox textBoxOwnerName;
         private Label ShopName;
+        private Label labelOwners;
+        private DataGridView dataGridViewCars;
+        private Label label1;
+        private Label label2;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private ComboBox comboBox1;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private Button CarsDeleteBtn;
+        private PictureBox pictureBox1;
+        private Label label6;
+        private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
+        private Button CarsAddBtn;
     }
 }
