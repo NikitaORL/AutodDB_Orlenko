@@ -169,5 +169,6 @@ namespace AutodDB_Orlenko
             textBoxOwnerName.Clear();
             textBoxOwnerPhone.Clear();
         }
+        //Начни работу с того что в ComboBoxOwner не показывает владельцев
     }
 }
