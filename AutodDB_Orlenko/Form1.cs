@@ -18,6 +18,8 @@ namespace AutodDB_Orlenko
 
             LoadOwners();
             LoadCars();
+
+            LoadOwnersToComboBox();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -145,7 +147,7 @@ namespace AutodDB_Orlenko
 
             if (comboBoxOwner.SelectedItem == null)
             {
-                MessageBox.Show("Пожалуйста, выберите владельца машины!");
+                MessageBox.Show("Vali omanik !");
                 return;
             }
 
@@ -164,11 +166,34 @@ namespace AutodDB_Orlenko
                 context.SaveChanges();
             }
 
-            LoadOwners();
+            LoadCars();
 
             textBoxOwnerName.Clear();
             textBoxOwnerPhone.Clear();
         }
+
+
+
+       
+
         //Начни работу с того что в ComboBoxOwner не показывает владельцев
+
+        private void LoadOwnersToComboBox()
+        {
+            using (var context = new AutoDbContext())
+            {
+                var owners = context.Owners
+                    .Select(o => new
+                    {
+                        o.Id,
+                        o.FullName
+                    })
+                    .ToList();
+
+                comboBoxOwner.DataSource = owners;
+                comboBoxOwner.DisplayMember = "FullName";
+                comboBoxOwner.ValueMember = "Id";
+            }
+        }
     }
 }
