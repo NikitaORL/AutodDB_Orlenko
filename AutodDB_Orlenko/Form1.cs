@@ -18,6 +18,7 @@ namespace AutodDB_Orlenko
 
             LoadOwners();
             LoadCars();
+            LoadServices();
 
             LoadOwnersToComboBox();
         }
@@ -196,7 +197,7 @@ namespace AutodDB_Orlenko
             }
         }
 
-        private void CarsDeleteBtn_Click(object sender, EventArgs e) 
+        private void CarsDeleteBtn_Click(object sender, EventArgs e)
         {
             if (dataGridViewCars.SelectedRows.Count == 0)
             {
@@ -220,5 +221,60 @@ namespace AutodDB_Orlenko
             LoadOwners();
         }
         //--------------------------------вкладка Service--------------------------------------
+
+        private void LoadServices()
+        {
+            using (var context = new AutoDbContext())
+            {
+                dataGridViewService.DataSource = null; 
+                dataGridViewService.DataSource = context.Services
+                    .Select(s => new
+                    {
+                        s.Id,
+                        s.Name,
+                        s.Price
+                    })
+                    .ToList();
+            }
+        }
+
+        private void buttonServiceAdd_Click(object sender, EventArgs e)
+        {
+            string name = textBoxServiceName.Text.Trim();
+            string priceText = textBoxServicePrice.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(priceText))
+            {
+                MessageBox.Show("Palun siseta kõik andmed!!!");
+                return;
+            }
+
+            // проверяем корректность цены
+            if (!decimal.TryParse(priceText, out decimal price))
+            {
+                MessageBox.Show("Sisesta korrektne hind!");
+                return;
+            }
+
+            using (var context = new AutoDbContext())
+            {
+                // Полностью указываем пространство имён, чтобы не было конфликта с System.Service
+                var service = new AutodDB_Orlenko.Models.Service
+                {
+                    Name = name,
+                    Price = price
+                };
+
+                context.Services.Add(service);
+                context.SaveChanges();
+            }
+
+            // очищаем поля ввода
+            textBoxServiceName.Clear();
+            textBoxServicePrice.Clear();
+
+            // обновляем DataGridView
+            LoadServices();
+        }
     }
 }
