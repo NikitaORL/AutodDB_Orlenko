@@ -174,7 +174,7 @@ namespace AutodDB_Orlenko
 
 
 
-       
+
 
         //Начни работу с того что в ComboBoxOwner не показывает владельцев
 
@@ -195,5 +195,30 @@ namespace AutodDB_Orlenko
                 comboBoxOwner.ValueMember = "Id";
             }
         }
+
+        private void CarsDeleteBtn_Click(object sender, EventArgs e) 
+        {
+            if (dataGridViewCars.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Palun vali omanik kui tahad kustuta");
+                return;
+            }
+
+            int id = (int)dataGridViewCars.SelectedRows[0].Cells["Id"].Value;
+
+            using (var context = new AutoDbContext())
+            {
+                var owner = context.Owners.FirstOrDefault(o => o.Id == id);
+
+                if (owner != null)
+                {
+                    context.Owners.Remove(owner);
+                    context.SaveChanges();
+                }
+            }
+
+            LoadOwners();
+        }
+        //--------------------------------вкладка Service--------------------------------------
     }
 }

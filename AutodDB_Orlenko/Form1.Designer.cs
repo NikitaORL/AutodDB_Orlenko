@@ -56,8 +56,19 @@
             label2 = new Label();
             dataGridViewCars = new DataGridView();
             label1 = new Label();
-            tabPage3 = new TabPage();
+            Service = new TabPage();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            label7 = new Label();
+            pictureBox3 = new PictureBox();
+            tabPage1 = new TabPage();
+            dataGridView1 = new DataGridView();
+            label8 = new Label();
+            label9 = new Label();
+            textBoxServiceName = new TextBox();
+            textBoxServicePrice = new TextBox();
+            label10 = new Label();
+            buttonServiceDelete = new Button();
+            buttonServiceAdd = new Button();
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
@@ -66,6 +77,9 @@
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCars).BeginInit();
+            Service.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // pictureBox2
@@ -91,7 +105,8 @@
             // 
             tabControl1.Controls.Add(Owners);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(Service);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -237,6 +252,7 @@
             CarsDeleteBtn.TabIndex = 22;
             CarsDeleteBtn.Text = "Delete";
             CarsDeleteBtn.UseVisualStyleBackColor = false;
+            CarsDeleteBtn.Click += CarsDeleteBtn_Click;
             // 
             // pictureBox1
             // 
@@ -339,20 +355,128 @@
             label1.TabIndex = 11;
             label1.Text = "ORLENKO Car Service";
             // 
-            // tabPage3
+            // Service
             // 
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1699, 879);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "tabPage3";
-            tabPage3.UseVisualStyleBackColor = true;
+            Service.BackColor = Color.Silver;
+            Service.Controls.Add(buttonServiceAdd);
+            Service.Controls.Add(buttonServiceDelete);
+            Service.Controls.Add(label10);
+            Service.Controls.Add(textBoxServicePrice);
+            Service.Controls.Add(textBoxServiceName);
+            Service.Controls.Add(label9);
+            Service.Controls.Add(label8);
+            Service.Controls.Add(dataGridView1);
+            Service.Controls.Add(pictureBox3);
+            Service.Controls.Add(label7);
+            Service.Location = new Point(4, 24);
+            Service.Name = "Service";
+            Service.Padding = new Padding(3);
+            Service.Size = new Size(1699, 879);
+            Service.TabIndex = 2;
+            Service.Text = "Service";
             // 
             // sqlCommand1
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // label7
+            // 
+            label7.Font = new Font("Microsoft PhagsPa", 28F);
+            label7.Location = new Point(590, 3);
+            label7.Name = "label7";
+            label7.Size = new Size(430, 59);
+            label7.TabIndex = 12;
+            label7.Text = "ORLENKO Car Service";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = Properties.Resources.BMW_e60__1_;
+            pictureBox3.InitialImage = (Image)resources.GetObject("pictureBox3.InitialImage");
+            pictureBox3.Location = new Point(581, 65);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(416, 626);
+            pictureBox3.TabIndex = 13;
+            pictureBox3.TabStop = false;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1699, 879);
+            tabPage1.TabIndex = 3;
+            tabPage1.Text = "ServiceCar";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(6, 202);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(569, 191);
+            dataGridView1.TabIndex = 14;
+            // 
+            // label8
+            // 
+            label8.Font = new Font("Segoe UI Black", 15F);
+            label8.Location = new Point(6, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(100, 29);
+            label8.TabIndex = 15;
+            label8.Text = "Name:";
+            // 
+            // label9
+            // 
+            label9.Font = new Font("Segoe UI Black", 15F);
+            label9.Location = new Point(6, 65);
+            label9.Name = "label9";
+            label9.Size = new Size(100, 33);
+            label9.TabIndex = 16;
+            label9.Text = "Price:";
+            // 
+            // textBoxServiceName
+            // 
+            textBoxServiceName.Location = new Point(104, 29);
+            textBoxServiceName.Name = "textBoxServiceName";
+            textBoxServiceName.Size = new Size(100, 23);
+            textBoxServiceName.TabIndex = 17;
+            // 
+            // textBoxServicePrice
+            // 
+            textBoxServicePrice.Location = new Point(104, 75);
+            textBoxServicePrice.Name = "textBoxServicePrice";
+            textBoxServicePrice.Size = new Size(100, 23);
+            textBoxServicePrice.TabIndex = 18;
+            // 
+            // label10
+            // 
+            label10.Font = new Font("Segoe UI Black", 20F);
+            label10.Location = new Point(6, 157);
+            label10.Name = "label10";
+            label10.Size = new Size(120, 42);
+            label10.TabIndex = 19;
+            label10.Text = "Service:";
+            // 
+            // buttonServiceDelete
+            // 
+            buttonServiceDelete.BackColor = Color.LightCoral;
+            buttonServiceDelete.Location = new Point(6, 109);
+            buttonServiceDelete.Name = "buttonServiceDelete";
+            buttonServiceDelete.Size = new Size(89, 45);
+            buttonServiceDelete.TabIndex = 23;
+            buttonServiceDelete.Text = "Delete";
+            buttonServiceDelete.UseVisualStyleBackColor = false;
+            // 
+            // buttonServiceAdd
+            // 
+            buttonServiceAdd.BackColor = Color.YellowGreen;
+            buttonServiceAdd.Location = new Point(115, 109);
+            buttonServiceAdd.Name = "buttonServiceAdd";
+            buttonServiceAdd.Size = new Size(89, 45);
+            buttonServiceAdd.TabIndex = 24;
+            buttonServiceAdd.Text = "Add";
+            buttonServiceAdd.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -371,6 +495,10 @@
             tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCars).EndInit();
+            Service.ResumeLayout(false);
+            Service.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
@@ -383,7 +511,7 @@
         private TextBox textBoxOwnerPhone;
         private PictureBox pictureBox2;
         private TabPage tabPage2;
-        private TabPage tabPage3;
+        private TabPage Service;
         private Label labelNumber;
         private Button DeleteBtnOwners;
         private Button AddBtnOwners;
@@ -405,5 +533,16 @@
         private Label label6;
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
         private Button CarsAddBtn;
+        private Label label7;
+        private PictureBox pictureBox3;
+        private TabPage tabPage1;
+        private Label label9;
+        private Label label8;
+        private DataGridView dataGridView1;
+        private Button buttonServiceAdd;
+        private Button buttonServiceDelete;
+        private Label label10;
+        private TextBox textBoxServicePrice;
+        private TextBox textBoxServiceName;
     }
 }
