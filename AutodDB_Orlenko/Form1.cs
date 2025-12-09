@@ -1,10 +1,8 @@
-﻿
-using AutodDB_Orlenko.Data; 
+﻿using AutodDB_Orlenko.Data;
 using AutodDB_Orlenko.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace AutodDB_Orlenko
@@ -15,11 +13,9 @@ namespace AutodDB_Orlenko
         {
             InitializeComponent();
 
-
             LoadOwners();
             LoadCars();
             LoadServices();
-
             LoadOwnersToComboBox();
         }
 
@@ -27,7 +23,6 @@ namespace AutodDB_Orlenko
         {
 
         }
-
 
         private void LoadOwners()
         {
@@ -40,7 +35,6 @@ namespace AutodDB_Orlenko
                         o.Id,
                         o.FullName,
                         o.Phone,
-                        //Cars = string.Join(", ", o.Cars.Select(c => c.Brand + " " + c.Model))
                     })
                     .ToList();
             }
@@ -71,11 +65,11 @@ namespace AutodDB_Orlenko
             }
 
             LoadOwners();
+            LoadOwnersToComboBox();
 
             textBoxOwnerName.Clear();
             textBoxOwnerPhone.Clear();
         }
-
 
         private void DeleteBtnOwners_Click(object sender, EventArgs e) // удаление
         {
@@ -99,17 +93,7 @@ namespace AutodDB_Orlenko
             }
 
             LoadOwners();
-        }
-
-
-        private void ShopName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
+            LoadOwnersToComboBox();
         }
 
         //--------------------------------вкладка Cars--------------------------------------
@@ -127,7 +111,6 @@ namespace AutodDB_Orlenko
                         o.Model,
                         o.RegistrationNumber,
                         Owner = o.Owner.FullName
-
                     })
                     .ToList();
             }
@@ -138,7 +121,6 @@ namespace AutodDB_Orlenko
             string Brand = textBoxBrand.Text.Trim();
             string Model = textBoxModel.Text.Trim();
             string RegistrationNumber = textBoxRegNumber.Text.Trim();
-
 
             if (string.IsNullOrWhiteSpace(Brand) || string.IsNullOrWhiteSpace(Model) || string.IsNullOrWhiteSpace(RegistrationNumber))
             {
@@ -162,22 +144,17 @@ namespace AutodDB_Orlenko
                     OwnerId = (int)comboBoxOwner.SelectedValue
                 };
 
-
                 context.Cars.Add(car);
                 context.SaveChanges();
             }
 
             LoadCars();
 
-            textBoxOwnerName.Clear();
-            textBoxOwnerPhone.Clear();
+
+            textBoxBrand.Clear();
+            textBoxModel.Clear();
+            textBoxRegNumber.Clear();
         }
-
-
-
-
-
-        //Начни работу с того что в ComboBoxOwner не показывает владельцев
 
         private void LoadOwnersToComboBox()
         {
@@ -201,7 +178,7 @@ namespace AutodDB_Orlenko
         {
             if (dataGridViewCars.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Palun vali omanik kui tahad kustuta");
+                MessageBox.Show("Palun vali auto kui tahad kustuta");
                 return;
             }
 
@@ -209,24 +186,25 @@ namespace AutodDB_Orlenko
 
             using (var context = new AutoDbContext())
             {
-                var owner = context.Owners.FirstOrDefault(o => o.Id == id);
+                var car = context.Cars.FirstOrDefault(c => c.Id == id);
 
-                if (owner != null)
+                if (car != null)
                 {
-                    context.Owners.Remove(owner);
+                    context.Cars.Remove(car);
                     context.SaveChanges();
                 }
             }
 
-            LoadOwners();
+            LoadCars();
         }
+
         //--------------------------------вкладка Service--------------------------------------
 
         private void LoadServices()
         {
             using (var context = new AutoDbContext())
             {
-                dataGridViewService.DataSource = null; 
+                dataGridViewService.DataSource = null;
                 dataGridViewService.DataSource = context.Services
                     .Select(s => new
                     {
@@ -238,7 +216,9 @@ namespace AutodDB_Orlenko
             }
         }
 
-        private void buttonServiceAdd_Click(object sender, EventArgs e)
+
+
+        private void buttonServiceAdd_Click_1(object sender, EventArgs e)
         {
             string name = textBoxServiceName.Text.Trim();
             string priceText = textBoxServicePrice.Text.Trim();
@@ -249,7 +229,6 @@ namespace AutodDB_Orlenko
                 return;
             }
 
-            // проверяем корректность цены
             if (!decimal.TryParse(priceText, out decimal price))
             {
                 MessageBox.Show("Sisesta korrektne hind!");
@@ -258,8 +237,7 @@ namespace AutodDB_Orlenko
 
             using (var context = new AutoDbContext())
             {
-                // Полностью указываем пространство имён, чтобы не было конфликта с System.Service
-                var service = new AutodDB_Orlenko.Models.Service
+                var service = new Service
                 {
                     Name = name,
                     Price = price
@@ -269,12 +247,40 @@ namespace AutodDB_Orlenko
                 context.SaveChanges();
             }
 
-            // очищаем поля ввода
             textBoxServiceName.Clear();
             textBoxServicePrice.Clear();
 
-            // обновляем DataGridView
             LoadServices();
+        }
+
+        private void buttonServiceDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewService.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Palun vali service kui tahad kustuta");
+                return;
+            }
+
+            int id = Convert.ToInt32(dataGridViewService.SelectedRows[0].Cells["Id"].Value);
+
+            using (var context = new AutoDbContext())
+            {
+                var service = context.Services
+                                     .FirstOrDefault(s => s.Id == id);
+
+                if (service != null)
+                {
+                    context.Services.Remove(service);
+                    context.SaveChanges();
+                }
+            }
+
+            LoadServices();
+        }
+
+        private void comboBoxOwner_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

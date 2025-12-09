@@ -69,6 +69,15 @@
             label7 = new Label();
             tabPage1 = new TabPage();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            comboBox3 = new ComboBox();
+            dataGridView1 = new DataGridView();
+            pictureBox4 = new PictureBox();
+            label14 = new Label();
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
@@ -80,6 +89,9 @@
             Service.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewService).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // pictureBox2
@@ -107,7 +119,10 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(Service);
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 186);
+            tabControl1.HotTrack = true;
             tabControl1.Location = new Point(12, 12);
+            tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(1707, 907);
@@ -126,10 +141,10 @@
             Owners.Controls.Add(textBoxOwnerPhone);
             Owners.Controls.Add(pictureBox2);
             Owners.Controls.Add(dataGridViewOmanukud);
-            Owners.Location = new Point(4, 24);
+            Owners.Location = new Point(4, 30);
             Owners.Name = "Owners";
             Owners.Padding = new Padding(3);
-            Owners.Size = new Size(1699, 879);
+            Owners.Size = new Size(1699, 873);
             Owners.TabIndex = 0;
             Owners.Text = "Owners";
             // 
@@ -150,7 +165,6 @@
             ShopName.Size = new Size(430, 59);
             ShopName.TabIndex = 10;
             ShopName.Text = "ORLENKO Car Service";
-            ShopName.Click += ShopName_Click;
             // 
             // DeleteBtnOwners
             // 
@@ -178,9 +192,9 @@
             // 
             // textBoxOwnerName
             // 
-            textBoxOwnerName.Location = new Point(165, 47);
+            textBoxOwnerName.Location = new Point(165, 42);
             textBoxOwnerName.Name = "textBoxOwnerName";
-            textBoxOwnerName.Size = new Size(129, 23);
+            textBoxOwnerName.Size = new Size(129, 29);
             textBoxOwnerName.TabIndex = 7;
             // 
             // labelNumber
@@ -203,9 +217,9 @@
             // 
             // textBoxOwnerPhone
             // 
-            textBoxOwnerPhone.Location = new Point(165, 88);
+            textBoxOwnerPhone.Location = new Point(165, 83);
             textBoxOwnerPhone.Name = "textBoxOwnerPhone";
-            textBoxOwnerPhone.Size = new Size(129, 23);
+            textBoxOwnerPhone.Size = new Size(129, 29);
             textBoxOwnerPhone.TabIndex = 4;
             // 
             // tabPage2
@@ -225,10 +239,10 @@
             tabPage2.Controls.Add(label2);
             tabPage2.Controls.Add(dataGridViewCars);
             tabPage2.Controls.Add(label1);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 30);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1699, 879);
+            tabPage2.Size = new Size(1699, 873);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Cars";
             // 
@@ -275,30 +289,31 @@
             // comboBoxOwner
             // 
             comboBoxOwner.FormattingEnabled = true;
-            comboBoxOwner.Location = new Point(108, 105);
+            comboBoxOwner.Location = new Point(108, 97);
             comboBoxOwner.Name = "comboBoxOwner";
-            comboBoxOwner.Size = new Size(121, 23);
+            comboBoxOwner.Size = new Size(121, 29);
             comboBoxOwner.TabIndex = 20;
+            comboBoxOwner.SelectedIndexChanged += comboBoxOwner_SelectedIndexChanged;
             // 
             // textBoxRegNumber
             // 
-            textBoxRegNumber.Location = new Point(240, 72);
+            textBoxRegNumber.Location = new Point(245, 67);
             textBoxRegNumber.Name = "textBoxRegNumber";
-            textBoxRegNumber.Size = new Size(100, 23);
+            textBoxRegNumber.Size = new Size(100, 29);
             textBoxRegNumber.TabIndex = 19;
             // 
             // textBoxModel
             // 
             textBoxModel.Location = new Point(108, 39);
             textBoxModel.Name = "textBoxModel";
-            textBoxModel.Size = new Size(100, 23);
+            textBoxModel.Size = new Size(100, 29);
             textBoxModel.TabIndex = 18;
             // 
             // textBoxBrand
             // 
             textBoxBrand.Location = new Point(108, 8);
             textBoxBrand.Name = "textBoxBrand";
-            textBoxBrand.Size = new Size(100, 23);
+            textBoxBrand.Size = new Size(100, 29);
             textBoxBrand.TabIndex = 17;
             // 
             // label5
@@ -318,7 +333,6 @@
             label4.Size = new Size(234, 33);
             label4.TabIndex = 15;
             label4.Text = "RegistrationNumber:";
-            label4.Click += label4_Click;
             // 
             // label3
             // 
@@ -368,37 +382,39 @@
             Service.Controls.Add(dataGridViewService);
             Service.Controls.Add(pictureBox3);
             Service.Controls.Add(label7);
-            Service.Location = new Point(4, 24);
+            Service.Location = new Point(4, 30);
             Service.Name = "Service";
             Service.Padding = new Padding(3);
-            Service.Size = new Size(1699, 879);
+            Service.Size = new Size(1699, 873);
             Service.TabIndex = 2;
             Service.Text = "Service";
             // 
             // buttonServiceAdd
             // 
             buttonServiceAdd.BackColor = Color.YellowGreen;
-            buttonServiceAdd.Location = new Point(115, 109);
+            buttonServiceAdd.Location = new Point(121, 128);
             buttonServiceAdd.Name = "buttonServiceAdd";
             buttonServiceAdd.Size = new Size(89, 45);
             buttonServiceAdd.TabIndex = 24;
             buttonServiceAdd.Text = "Add";
             buttonServiceAdd.UseVisualStyleBackColor = false;
+            buttonServiceAdd.Click += buttonServiceAdd_Click_1;
             // 
             // buttonServiceDelete
             // 
             buttonServiceDelete.BackColor = Color.LightCoral;
-            buttonServiceDelete.Location = new Point(6, 109);
+            buttonServiceDelete.Location = new Point(16, 128);
             buttonServiceDelete.Name = "buttonServiceDelete";
             buttonServiceDelete.Size = new Size(89, 45);
             buttonServiceDelete.TabIndex = 23;
             buttonServiceDelete.Text = "Delete";
             buttonServiceDelete.UseVisualStyleBackColor = false;
+            buttonServiceDelete.Click += buttonServiceDelete_Click;
             // 
             // label10
             // 
             label10.Font = new Font("Segoe UI Black", 20F);
-            label10.Location = new Point(6, 157);
+            label10.Location = new Point(6, 215);
             label10.Name = "label10";
             label10.Size = new Size(120, 42);
             label10.TabIndex = 19;
@@ -406,22 +422,22 @@
             // 
             // textBoxServicePrice
             // 
-            textBoxServicePrice.Location = new Point(104, 75);
+            textBoxServicePrice.Location = new Point(110, 78);
             textBoxServicePrice.Name = "textBoxServicePrice";
-            textBoxServicePrice.Size = new Size(100, 23);
+            textBoxServicePrice.Size = new Size(100, 29);
             textBoxServicePrice.TabIndex = 18;
             // 
             // textBoxServiceName
             // 
-            textBoxServiceName.Location = new Point(104, 29);
+            textBoxServiceName.Location = new Point(110, 36);
             textBoxServiceName.Name = "textBoxServiceName";
-            textBoxServiceName.Size = new Size(100, 23);
+            textBoxServiceName.Size = new Size(100, 29);
             textBoxServiceName.TabIndex = 17;
             // 
             // label9
             // 
             label9.Font = new Font("Segoe UI Black", 15F);
-            label9.Location = new Point(6, 65);
+            label9.Location = new Point(16, 74);
             label9.Name = "label9";
             label9.Size = new Size(100, 33);
             label9.TabIndex = 16;
@@ -430,7 +446,7 @@
             // label8
             // 
             label8.Font = new Font("Segoe UI Black", 15F);
-            label8.Location = new Point(6, 19);
+            label8.Location = new Point(16, 33);
             label8.Name = "label8";
             label8.Size = new Size(100, 29);
             label8.TabIndex = 15;
@@ -439,9 +455,9 @@
             // dataGridViewService
             // 
             dataGridViewService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewService.Location = new Point(6, 202);
+            dataGridViewService.Location = new Point(6, 260);
             dataGridViewService.Name = "dataGridViewService";
-            dataGridViewService.Size = new Size(569, 191);
+            dataGridViewService.Size = new Size(569, 282);
             dataGridViewService.TabIndex = 14;
             // 
             // pictureBox3
@@ -465,18 +481,103 @@
             // 
             // tabPage1
             // 
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.BackColor = Color.Silver;
+            tabPage1.Controls.Add(label14);
+            tabPage1.Controls.Add(pictureBox4);
+            tabPage1.Controls.Add(dataGridView1);
+            tabPage1.Controls.Add(comboBox3);
+            tabPage1.Controls.Add(comboBox2);
+            tabPage1.Controls.Add(comboBox1);
+            tabPage1.Controls.Add(label13);
+            tabPage1.Controls.Add(label12);
+            tabPage1.Controls.Add(label11);
+            tabPage1.Location = new Point(4, 30);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1699, 879);
+            tabPage1.Size = new Size(1699, 873);
             tabPage1.TabIndex = 3;
             tabPage1.Text = "ServiceCar";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // sqlCommand1
             // 
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
+            // 
+            // label11
+            // 
+            label11.Font = new Font("Segoe UI Black", 15F);
+            label11.Location = new Point(6, 19);
+            label11.Name = "label11";
+            label11.Size = new Size(169, 29);
+            label11.TabIndex = 16;
+            label11.Text = " Service Name:";
+            // 
+            // label12
+            // 
+            label12.Font = new Font("Segoe UI Black", 15F);
+            label12.Location = new Point(15, 58);
+            label12.Name = "label12";
+            label12.Size = new Size(169, 29);
+            label12.TabIndex = 17;
+            label12.Text = "Car: ";
+            // 
+            // label13
+            // 
+            label13.Font = new Font("Segoe UI Black", 15F);
+            label13.Location = new Point(15, 97);
+            label13.Name = "label13";
+            label13.Size = new Size(169, 29);
+            label13.TabIndex = 18;
+            label13.Text = "Owner:";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(172, 22);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 29);
+            comboBox1.TabIndex = 19;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(82, 61);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(121, 29);
+            comboBox2.TabIndex = 20;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(114, 100);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(121, 29);
+            comboBox3.TabIndex = 21;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(15, 365);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(616, 335);
+            dataGridView1.TabIndex = 22;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Location = new Point(637, 84);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(360, 616);
+            pictureBox4.TabIndex = 23;
+            pictureBox4.TabStop = false;
+            // 
+            // label14
+            // 
+            label14.Font = new Font("Microsoft PhagsPa", 28F);
+            label14.Location = new Point(593, 18);
+            label14.Name = "label14";
+            label14.Size = new Size(430, 63);
+            label14.TabIndex = 24;
+            label14.Text = "ORLENKO Car Service";
             // 
             // Form1
             // 
@@ -499,6 +600,9 @@
             Service.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewService).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
         }
 
@@ -544,5 +648,14 @@
         private Label label10;
         private TextBox textBoxServicePrice;
         private TextBox textBoxServiceName;
+        private ComboBox comboBox3;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private Label label13;
+        private Label label12;
+        private Label label11;
+        private Label label14;
+        private PictureBox pictureBox4;
+        private DataGridView dataGridView1;
     }
 }
