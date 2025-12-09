@@ -17,6 +17,7 @@ namespace AutodDB_Orlenko
             LoadCars();
             LoadServices();
             LoadOwnersToComboBox();
+            LoadCarServicesCar();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -277,10 +278,34 @@ namespace AutodDB_Orlenko
 
             LoadServices();
         }
-
-        private void comboBoxOwner_SelectedIndexChanged(object sender, EventArgs e)
+        //---------------------------------вкладка ServiceCar----------------------------------------------------
+        private void LoadCarServicesCar()
         {
+            using (var context = new AutoDbContext())
+            {
+                dataGridViewServiceCar.DataSource = context.CarServices
+                    .Include(cs => cs.Car)
+                        .ThenInclude(c => c.Owner) // подключаем владельца через Car
+                    .Include(cs => cs.Service)
+                    .Select(cs => new
+                    {
+                        ServiceCarId = cs.CarId,
+                        CarNumber = cs.Car.RegistrationNumber,
+                        CarBrand = cs.Car.Brand,
+                        CarModel = cs.Car.Model,
+                        OwnerName = cs.Car.Owner.FullName,
+                        OwnerPhone = cs.Car.Owner.Phone,
+                        ServiceName = cs.Service.Name,
+                        ServicePrice = cs.Service.Price,
+                        cs.DateOfService,
+                        cs.Mileage
+                    })
+                    .ToList();
+            }
+
+
 
         }
+
     }
 }
