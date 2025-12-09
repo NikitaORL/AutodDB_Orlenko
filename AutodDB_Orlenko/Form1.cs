@@ -307,5 +307,45 @@ namespace AutodDB_Orlenko
 
         }
 
+        private void AddbtnServiceCars_Click(object sender, EventArgs e)
+        {
+            if (comboBoxOwnerServiceCar.SelectedItem == null ||
+        comboBoxCarServiceCar.SelectedItem == null ||
+        comboBoxServiceCarName.SelectedItem == null)
+            {
+                MessageBox.Show("Palun vali omanik, auto ja teenus!");
+                return;
+            }
+
+            using (var context = new AutoDbContext())
+            {
+                // Получаем выбранные Id
+                int ownerId = (int)comboBoxOwnerServiceCar.SelectedValue;
+                int carId = (int)comboBoxCarServiceCar.SelectedValue;
+                int serviceId = (int)comboBoxServiceCarName.SelectedValue;
+
+                // Проверяем, что выбранный автомобиль принадлежит выбранному владельцу
+                var car = context.Cars.FirstOrDefault(c => c.Id == carId && c.OwnerId == ownerId);
+                if (car == null)
+                {
+                    MessageBox.Show("Valitud auto ei kuulu valitud omanikule!");
+                    return;
+                }
+
+                // Создаем новую запись в CarServices
+                var carService = new CarService
+                {
+                    CarId = carId,
+                    ServiceId = serviceId,
+                    DateOfService = DateTime.Now,
+                    Mileage = 0 // или можно сделать TextBox для ввода
+                };
+
+                context.CarServices.Add(carService);
+                context.SaveChanges();
+            }
+
+            LoadCarServicesCar(); // обновляем таблицу
+        }
     }
 }
