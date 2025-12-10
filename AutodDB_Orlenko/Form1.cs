@@ -319,12 +319,12 @@ namespace AutodDB_Orlenko
 
             using (var context = new AutoDbContext())
             {
-                // Получаем выбранные Id
+     
                 int ownerId = (int)comboBoxOwnerServiceCar.SelectedValue;
                 int carId = (int)comboBoxCarServiceCar.SelectedValue;
                 int serviceId = (int)comboBoxServiceCarName.SelectedValue;
 
-                // Проверяем, что выбранный автомобиль принадлежит выбранному владельцу
+               
                 var car = context.Cars.FirstOrDefault(c => c.Id == carId && c.OwnerId == ownerId);
                 if (car == null)
                 {
@@ -332,20 +332,20 @@ namespace AutodDB_Orlenko
                     return;
                 }
 
-                // Создаем новую запись в CarServices
+                
                 var carService = new CarService
                 {
                     CarId = carId,
                     ServiceId = serviceId,
                     DateOfService = DateTime.Now,
-                    Mileage = 0 // или можно сделать TextBox для ввода
+                    Mileage = 0 
                 };
 
                 context.CarServices.Add(carService);
                 context.SaveChanges();
             }
 
-            LoadCarServicesCar(); // обновляем таблицу
+            LoadCarServicesCar(); 
         }
     }
 }
