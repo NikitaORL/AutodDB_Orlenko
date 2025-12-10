@@ -17,7 +17,6 @@ namespace AutodDB_Orlenko
             LoadCars();
             LoadServices();
             LoadOwnersToComboBox();
-            LoadCarServicesCar();
 
         }
 
