@@ -552,7 +552,6 @@
             AddbtnServiceCars.TabIndex = 27;
             AddbtnServiceCars.Text = "Add";
             AddbtnServiceCars.UseVisualStyleBackColor = false;
-            AddbtnServiceCars.Click += AddbtnServiceCars_Click;
             // 
             // DeletebtnServiceCar
             // 
