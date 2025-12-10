@@ -69,14 +69,9 @@
             pictureBox3 = new PictureBox();
             label7 = new Label();
             tabPage1 = new TabPage();
+            textBoxMileage = new TextBox();
             label20 = new Label();
-            comboBoxOwnerPhoneServiceCar = new ComboBox();
-            label19 = new Label();
-            comboBoxServiceCarPrice = new ComboBox();
-            comboBoxCarServiceBrand = new ComboBox();
-            comboBoxCarServiceModel = new ComboBox();
-            label18 = new Label();
-            label17 = new Label();
+            comboBoxCar = new ComboBox();
             label16 = new Label();
             AddbtnServiceCars = new Button();
             DeletebtnServiceCar = new Button();
@@ -84,15 +79,13 @@
             label14 = new Label();
             pictureBox4 = new PictureBox();
             dataGridViewServiceCar = new DataGridView();
-            comboBoxOwnerServiceCar = new ComboBox();
-            comboBoxCarServiceRegNumber = new ComboBox();
-            comboBoxServiceCarName = new ComboBox();
+            comboBoxOwner2 = new ComboBox();
+            comboBoxService = new ComboBox();
             label13 = new Label();
-            label12 = new Label();
             label11 = new Label();
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            textBox1 = new TextBox();
+            contextMenuStrip2 = new ContextMenuStrip(components);
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
@@ -496,15 +489,9 @@
             // tabPage1
             // 
             tabPage1.BackColor = Color.Silver;
-            tabPage1.Controls.Add(textBox1);
+            tabPage1.Controls.Add(textBoxMileage);
             tabPage1.Controls.Add(label20);
-            tabPage1.Controls.Add(comboBoxOwnerPhoneServiceCar);
-            tabPage1.Controls.Add(label19);
-            tabPage1.Controls.Add(comboBoxServiceCarPrice);
-            tabPage1.Controls.Add(comboBoxCarServiceBrand);
-            tabPage1.Controls.Add(comboBoxCarServiceModel);
-            tabPage1.Controls.Add(label18);
-            tabPage1.Controls.Add(label17);
+            tabPage1.Controls.Add(comboBoxCar);
             tabPage1.Controls.Add(label16);
             tabPage1.Controls.Add(AddbtnServiceCars);
             tabPage1.Controls.Add(DeletebtnServiceCar);
@@ -512,11 +499,9 @@
             tabPage1.Controls.Add(label14);
             tabPage1.Controls.Add(pictureBox4);
             tabPage1.Controls.Add(dataGridViewServiceCar);
-            tabPage1.Controls.Add(comboBoxOwnerServiceCar);
-            tabPage1.Controls.Add(comboBoxCarServiceRegNumber);
-            tabPage1.Controls.Add(comboBoxServiceCarName);
+            tabPage1.Controls.Add(comboBoxOwner2);
+            tabPage1.Controls.Add(comboBoxService);
             tabPage1.Controls.Add(label13);
-            tabPage1.Controls.Add(label12);
             tabPage1.Controls.Add(label11);
             tabPage1.Location = new Point(4, 30);
             tabPage1.Name = "tabPage1";
@@ -525,87 +510,43 @@
             tabPage1.TabIndex = 3;
             tabPage1.Text = "ServiceCar";
             // 
+            // textBoxMileage
+            // 
+            textBoxMileage.Location = new Point(156, 126);
+            textBoxMileage.Name = "textBoxMileage";
+            textBoxMileage.Size = new Size(122, 29);
+            textBoxMileage.TabIndex = 38;
+            // 
             // label20
             // 
             label20.Font = new Font("Segoe UI Black", 15F);
-            label20.Location = new Point(15, 201);
+            label20.Location = new Point(15, 126);
             label20.Name = "label20";
             label20.Size = new Size(155, 29);
             label20.TabIndex = 36;
             label20.Text = "Car Mileage:  ";
             // 
-            // comboBoxOwnerPhoneServiceCar
+            // comboBoxCar
             // 
-            comboBoxOwnerPhoneServiceCar.FormattingEnabled = true;
-            comboBoxOwnerPhoneServiceCar.Location = new Point(499, 128);
-            comboBoxOwnerPhoneServiceCar.Name = "comboBoxOwnerPhoneServiceCar";
-            comboBoxOwnerPhoneServiceCar.Size = new Size(121, 29);
-            comboBoxOwnerPhoneServiceCar.TabIndex = 35;
-            // 
-            // label19
-            // 
-            label19.Font = new Font("Segoe UI Black", 15F);
-            label19.Location = new Point(325, 125);
-            label19.Name = "label19";
-            label19.Size = new Size(189, 29);
-            label19.TabIndex = 34;
-            label19.Text = "Owner Number:";
-            // 
-            // comboBoxServiceCarPrice
-            // 
-            comboBoxServiceCarPrice.FormattingEnabled = true;
-            comboBoxServiceCarPrice.Location = new Point(177, 50);
-            comboBoxServiceCarPrice.Name = "comboBoxServiceCarPrice";
-            comboBoxServiceCarPrice.Size = new Size(121, 29);
-            comboBoxServiceCarPrice.TabIndex = 33;
-            // 
-            // comboBoxCarServiceBrand
-            // 
-            comboBoxCarServiceBrand.FormattingEnabled = true;
-            comboBoxCarServiceBrand.Location = new Point(139, 96);
-            comboBoxCarServiceBrand.Name = "comboBoxCarServiceBrand";
-            comboBoxCarServiceBrand.Size = new Size(121, 29);
-            comboBoxCarServiceBrand.TabIndex = 32;
-            // 
-            // comboBoxCarServiceModel
-            // 
-            comboBoxCarServiceModel.FormattingEnabled = true;
-            comboBoxCarServiceModel.Location = new Point(139, 131);
-            comboBoxCarServiceModel.Name = "comboBoxCarServiceModel";
-            comboBoxCarServiceModel.Size = new Size(121, 29);
-            comboBoxCarServiceModel.TabIndex = 31;
-            // 
-            // label18
-            // 
-            label18.Font = new Font("Segoe UI Black", 15F);
-            label18.Location = new Point(15, 50);
-            label18.Name = "label18";
-            label18.Size = new Size(156, 29);
-            label18.TabIndex = 30;
-            label18.Text = " Service Price:";
-            // 
-            // label17
-            // 
-            label17.Font = new Font("Segoe UI Black", 15F);
-            label17.Location = new Point(15, 128);
-            label17.Name = "label17";
-            label17.Size = new Size(169, 29);
-            label17.TabIndex = 29;
-            label17.Text = "Car Model:  ";
+            comboBoxCar.FormattingEnabled = true;
+            comboBoxCar.Location = new Point(123, 50);
+            comboBoxCar.Name = "comboBoxCar";
+            comboBoxCar.Size = new Size(121, 29);
+            comboBoxCar.TabIndex = 32;
             // 
             // label16
             // 
             label16.Font = new Font("Segoe UI Black", 15F);
-            label16.Location = new Point(15, 96);
+            label16.Location = new Point(15, 47);
             label16.Name = "label16";
             label16.Size = new Size(169, 29);
             label16.TabIndex = 28;
-            label16.Text = "Car Brand:  ";
+            label16.Text = "Car:  ";
             // 
             // AddbtnServiceCars
             // 
             AddbtnServiceCars.BackColor = Color.YellowGreen;
-            AddbtnServiceCars.Location = new Point(191, 239);
+            AddbtnServiceCars.Location = new Point(191, 186);
             AddbtnServiceCars.Name = "AddbtnServiceCars";
             AddbtnServiceCars.Size = new Size(87, 46);
             AddbtnServiceCars.TabIndex = 27;
@@ -616,7 +557,7 @@
             // DeletebtnServiceCar
             // 
             DeletebtnServiceCar.BackColor = Color.LightCoral;
-            DeletebtnServiceCar.Location = new Point(15, 239);
+            DeletebtnServiceCar.Location = new Point(15, 186);
             DeletebtnServiceCar.Name = "DeletebtnServiceCar";
             DeletebtnServiceCar.Size = new Size(87, 46);
             DeletebtnServiceCar.TabIndex = 26;
@@ -658,56 +599,39 @@
             dataGridViewServiceCar.Size = new Size(616, 335);
             dataGridViewServiceCar.TabIndex = 22;
             // 
-            // comboBoxOwnerServiceCar
+            // comboBoxOwner2
             // 
-            comboBoxOwnerServiceCar.FormattingEnabled = true;
-            comboBoxOwnerServiceCar.Location = new Point(423, 84);
-            comboBoxOwnerServiceCar.Name = "comboBoxOwnerServiceCar";
-            comboBoxOwnerServiceCar.Size = new Size(121, 29);
-            comboBoxOwnerServiceCar.TabIndex = 21;
+            comboBoxOwner2.FormattingEnabled = true;
+            comboBoxOwner2.Location = new Point(123, 84);
+            comboBoxOwner2.Name = "comboBoxOwner2";
+            comboBoxOwner2.Size = new Size(121, 29);
+            comboBoxOwner2.TabIndex = 21;
             // 
-            // comboBoxCarServiceRegNumber
+            // comboBoxService
             // 
-            comboBoxCarServiceRegNumber.FormattingEnabled = true;
-            comboBoxCarServiceRegNumber.Location = new Point(249, 166);
-            comboBoxCarServiceRegNumber.Name = "comboBoxCarServiceRegNumber";
-            comboBoxCarServiceRegNumber.Size = new Size(121, 29);
-            comboBoxCarServiceRegNumber.TabIndex = 20;
-            // 
-            // comboBoxServiceCarName
-            // 
-            comboBoxServiceCarName.FormattingEnabled = true;
-            comboBoxServiceCarName.Location = new Point(177, 15);
-            comboBoxServiceCarName.Name = "comboBoxServiceCarName";
-            comboBoxServiceCarName.Size = new Size(121, 29);
-            comboBoxServiceCarName.TabIndex = 19;
+            comboBoxService.FormattingEnabled = true;
+            comboBoxService.Location = new Point(123, 15);
+            comboBoxService.Name = "comboBoxService";
+            comboBoxService.Size = new Size(121, 29);
+            comboBoxService.TabIndex = 19;
             // 
             // label13
             // 
             label13.Font = new Font("Segoe UI Black", 15F);
-            label13.Location = new Point(325, 84);
+            label13.Location = new Point(15, 84);
             label13.Name = "label13";
             label13.Size = new Size(92, 29);
             label13.TabIndex = 18;
             label13.Text = "Owner:";
             // 
-            // label12
-            // 
-            label12.Font = new Font("Segoe UI Black", 15F);
-            label12.Location = new Point(15, 163);
-            label12.Name = "label12";
-            label12.Size = new Size(228, 29);
-            label12.TabIndex = 17;
-            label12.Text = "Registration Number:  ";
-            // 
             // label11
             // 
             label11.Font = new Font("Segoe UI Black", 15F);
-            label11.Location = new Point(15, 15);
+            label11.Location = new Point(15, 12);
             label11.Name = "label11";
             label11.Size = new Size(169, 29);
             label11.TabIndex = 16;
-            label11.Text = " Service Name:";
+            label11.Text = " Service:";
             // 
             // sqlCommand1
             // 
@@ -719,12 +643,10 @@
             contextMenuStrip1.Name = "contextMenuStrip1";
             contextMenuStrip1.Size = new Size(61, 4);
             // 
-            // textBox1
+            // contextMenuStrip2
             // 
-            textBox1.Location = new Point(160, 204);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(118, 29);
-            textBox1.TabIndex = 37;
+            contextMenuStrip2.Name = "contextMenuStrip2";
+            contextMenuStrip2.Size = new Size(61, 4);
             // 
             // Form1
             // 
@@ -796,11 +718,10 @@
         private Label label10;
         private TextBox textBoxServicePrice;
         private TextBox textBoxServiceName;
-        private ComboBox comboBoxOwnerServiceCar;
+        private ComboBox comboBoxOwner2;
         private ComboBox comboBoxCarServiceCar;
-        private ComboBox comboBoxServiceCarName;
+        private ComboBox comboBoxService;
         private Label label13;
-        private Label label12;
         private Label label11;
         private Label label14;
         private PictureBox pictureBox4;
@@ -809,16 +730,10 @@
         private Button AddbtnServiceCars;
         private Button DeletebtnServiceCar;
         private Label label16;
-        private ComboBox comboBoxCarServiceBrand;
-        private ComboBox comboBoxCarServiceModel;
-        private Label label18;
-        private Label label17;
-        private ComboBox comboBoxCarServiceRegNumber;
-        private ComboBox comboBoxServiceCarPrice;
-        private ComboBox comboBoxOwnerPhoneServiceCar;
-        private Label label19;
-        private Label label20;
-        private TextBox textBox1;
+        private ComboBox comboBoxCar;
         private ContextMenuStrip contextMenuStrip1;
+        private TextBox textBoxMileage;
+        private Label label20;
+        private ContextMenuStrip contextMenuStrip2;
     }
 }

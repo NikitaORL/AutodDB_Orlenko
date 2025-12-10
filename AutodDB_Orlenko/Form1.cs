@@ -280,74 +280,7 @@ namespace AutodDB_Orlenko
             LoadServices();
         }
         //---------------------------------вкладка ServiceCar----------------------------------------------------
-        private void LoadCarServicesCar()
-        {
-            using (var context = new AutoDbContext())
-            {
-                dataGridViewServiceCar.DataSource = context.CarServices
-                    .Include(cs => cs.Car)
-                        .ThenInclude(c => c.Owner) // подключаем владельца через Car
-                    .Include(cs => cs.Service)
-                    .Select(cs => new
-                    {
-                        ServiceCarId = cs.CarId,
-                        CarNumber = cs.Car.RegistrationNumber,
-                        CarBrand = cs.Car.Brand,
-                        CarModel = cs.Car.Model,
-                        OwnerName = cs.Car.Owner.FullName,
-                        OwnerPhone = cs.Car.Owner.Phone,
-                        ServiceName = cs.Service.Name,
-                        ServicePrice = cs.Service.Price,
-                        cs.DateOfService,
-                        cs.Mileage
-                    })
-                    .ToList();
-            }
 
-
-
-        }
-
-        private void AddbtnServiceCars_Click(object sender, EventArgs e)
-        {
-            if (comboBoxOwnerServiceCar.SelectedItem == null ||
-        comboBoxCarServiceCar.SelectedItem == null ||
-        comboBoxServiceCarName.SelectedItem == null)
-            {
-                MessageBox.Show("Palun vali omanik, auto ja teenus!");
-                return;
-            }
-
-            using (var context = new AutoDbContext())
-            {
-     
-                int ownerId = (int)comboBoxOwnerServiceCar.SelectedValue;
-                int carId = (int)comboBoxCarServiceCar.SelectedValue;
-                int serviceId = (int)comboBoxServiceCarName.SelectedValue;
-
-               
-                var car = context.Cars.FirstOrDefault(c => c.Id == carId && c.OwnerId == ownerId);
-                if (car == null)
-                {
-                    MessageBox.Show("Valitud auto ei kuulu valitud omanikule!");
-                    return;
-                }
-
-                
-                var carService = new CarService
-                {
-                    CarId = carId,
-                    ServiceId = serviceId,
-                    DateOfService = DateTime.Now,
-                    Mileage = 0 
-                };
-
-                context.CarServices.Add(carService);
-                context.SaveChanges();
-            }
-
-            LoadCarServicesCar(); 
-        }
     }
 
 }
