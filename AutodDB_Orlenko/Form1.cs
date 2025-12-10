@@ -18,6 +18,7 @@ namespace AutodDB_Orlenko
             LoadServices();
             LoadOwnersToComboBox();
             LoadCarServicesCar();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -348,4 +349,5 @@ namespace AutodDB_Orlenko
             LoadCarServicesCar(); 
         }
     }
+
 }
