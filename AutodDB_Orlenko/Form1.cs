@@ -17,6 +17,9 @@ namespace AutodDB_Orlenko
             LoadCars();
             LoadServices();
             LoadOwnersToComboBox();
+            LoadOwnersToComboBox2();
+            LoadCarsToComboBoxForService();
+            LoadServicesToComboBox();
 
         }
 
@@ -67,6 +70,7 @@ namespace AutodDB_Orlenko
 
             LoadOwners();
             LoadOwnersToComboBox();
+            LoadOwnersToComboBox2();
 
             textBoxOwnerName.Clear();
             textBoxOwnerPhone.Clear();
@@ -95,6 +99,7 @@ namespace AutodDB_Orlenko
 
             LoadOwners();
             LoadOwnersToComboBox();
+            LoadOwnersToComboBox2();
         }
 
         //--------------------------------вкладка Cars--------------------------------------
@@ -150,6 +155,7 @@ namespace AutodDB_Orlenko
             }
 
             LoadCars();
+            LoadCarsToComboBoxForService();
 
 
             textBoxBrand.Clear();
@@ -197,6 +203,7 @@ namespace AutodDB_Orlenko
             }
 
             LoadCars();
+            LoadCarsToComboBoxForService();
         }
 
         //--------------------------------вкладка Service--------------------------------------
@@ -252,6 +259,7 @@ namespace AutodDB_Orlenko
             textBoxServicePrice.Clear();
 
             LoadServices();
+            LoadServicesToComboBox();
         }
 
         private void buttonServiceDelete_Click(object sender, EventArgs e)
@@ -277,8 +285,72 @@ namespace AutodDB_Orlenko
             }
 
             LoadServices();
+            LoadServicesToComboBox();
         }
-        //---------------------------------вкладка ServiceCar----------------------------------------------------
+        //---------------------------------вкладка ServiceCar-----------------------------------------------------
+
+        private void LoadOwnersToComboBox2()
+        {
+            using (var context = new AutoDbContext())
+            {
+                var owners = context.Owners
+                    .Select(o => new
+                    {
+                        o.Id,
+                        o.FullName
+                    })
+                    .ToList();
+
+                comboBoxOwner2.DataSource = owners;
+                comboBoxOwner2.DisplayMember = "FullName";
+                comboBoxOwner2.ValueMember = "Id";
+
+                comboBoxOwner2.SelectedIndex = -1;
+            }
+        }
+
+        private void LoadCarsToComboBoxForService()
+        {
+            using (var context = new AutoDbContext())
+            {
+                var cars = context.Cars
+                    .Select(c => new
+                    {
+                        c.Id,
+                        Full = c.Brand + " " + c.Model + " (" + c.RegistrationNumber + ")"
+                    })
+                    .ToList();
+
+                comboBoxCar.DataSource = cars;
+                comboBoxCar.DisplayMember = "Full";
+                comboBoxCar.ValueMember = "Id";
+
+
+                comboBoxCar.SelectedIndex = -1;
+            }
+        }
+
+        private void LoadServicesToComboBox()
+        {
+            using (var context = new AutoDbContext())
+            {
+                var services = context.Services
+                    .Select(s => new
+                    {
+                        s.Id,
+                        s.Name
+                    })
+                    .ToList();
+
+                comboBoxService.DataSource = services;
+                comboBoxService.DisplayMember = "Name";
+                comboBoxService.ValueMember = "Id";
+
+                comboBoxService.SelectedIndex = -1;
+            }
+        }
+
+
 
     }
 
