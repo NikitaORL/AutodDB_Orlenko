@@ -552,6 +552,7 @@
             AddbtnServiceCars.TabIndex = 27;
             AddbtnServiceCars.Text = "Add";
             AddbtnServiceCars.UseVisualStyleBackColor = false;
+            AddbtnServiceCars.Click += AddbtnServiceCars_Click;
             // 
             // DeletebtnServiceCar
             // 
@@ -562,6 +563,7 @@
             DeletebtnServiceCar.TabIndex = 26;
             DeletebtnServiceCar.Text = "Delete";
             DeletebtnServiceCar.UseVisualStyleBackColor = false;
+            DeletebtnServiceCar.Click += DeletebtnServiceCar_Click;
             // 
             // label15
             // 

@@ -20,6 +20,7 @@ namespace AutodDB_Orlenko
             LoadOwnersToComboBox2();
             LoadCarsToComboBoxForService();
             LoadServicesToComboBox();
+            LoadCarServicesGrid();
 
         }
 
@@ -350,8 +351,98 @@ namespace AutodDB_Orlenko
             }
         }
 
+        private void AddbtnServiceCars_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCar.SelectedItem == null || comboBoxService.SelectedItem == null)
+            {
+                MessageBox.Show("Palun vali auto ja teenus!");
+                return;
+            }
+
+            if (!int.TryParse(textBoxMileage.Text.Trim(), out int mileage))
+            {
+                MessageBox.Show("Palun sisesta korrektne läbisõit!");
+                return;
+            }
+
+            int carId = (int)comboBoxCar.SelectedValue;
+            int serviceId = (int)comboBoxService.SelectedValue;
+
+            using (var context = new AutoDbContext())
+            {
+                // Проверяем, существует ли уже такая запись
+                var exists = context.CarServices
+                    .Any(cs => cs.CarId == carId && cs.ServiceId == serviceId);
+
+                if (exists)
+                {
+                    MessageBox.Show("See teenus on juba valitud selle auto jaoks!");
+                    return;
+                }
+
+                var carService = new CarService
+                {
+                    CarId = carId,
+                    ServiceId = serviceId,
+                    Mileage = mileage
+                };
+
+                context.CarServices.Add(carService);
+                context.SaveChanges();
+            }
+
+            MessageBox.Show("Teenuse seos lisatud edukalt!");
+            LoadCarServicesGrid();
+
+            textBoxMileage.Clear();
+        }
 
 
+        private void DeletebtnServiceCar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewServiceCar.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Palun vali rida kustutamiseks!");
+                return;
+            }
+
+            int carId = (int)dataGridViewServiceCar.SelectedRows[0].Cells["CarId"].Value;
+            int serviceId = (int)dataGridViewServiceCar.SelectedRows[0].Cells["ServiceId"].Value;
+
+            using (var context = new AutoDbContext())
+            {
+                var carService = context.CarServices
+                    .FirstOrDefault(cs => cs.CarId == carId && cs.ServiceId == serviceId);
+
+                if (carService != null)
+                {
+                    context.CarServices.Remove(carService);
+                    context.SaveChanges();
+                    MessageBox.Show("Teenuse seos kustutatud edukalt!");
+                }
+            }
+
+            LoadCarServicesGrid();
+        }
+
+
+        private void LoadCarServicesGrid()
+        {
+            using (var context = new AutoDbContext())
+            {
+                dataGridViewServiceCar.DataSource = context.CarServices
+                    .Include(cs => cs.Car)
+                    .Include(cs => cs.Service)
+                    .Select(cs => new
+                    {
+                        cs.CarId,
+                        Car = cs.Car.Brand + " " + cs.Car.Model + " (" + cs.Car.RegistrationNumber + ")",
+                        cs.ServiceId,
+                        Service = cs.Service.Name,
+                        cs.Mileage
+                    })
+                    .ToList();
+            }
+        }
     }
-
 }
