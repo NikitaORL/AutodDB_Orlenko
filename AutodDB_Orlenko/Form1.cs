@@ -435,6 +435,7 @@ namespace AutodDB_Orlenko
                     .Include(cs => cs.Service)
                     .Select(cs => new
                     {
+                        Owner = cs.Car.Owner.FullName,
                         cs.CarId,
                         Car = cs.Car.Brand + " " + cs.Car.Model + " (" + cs.Car.RegistrationNumber + ")",
                         cs.ServiceId,
