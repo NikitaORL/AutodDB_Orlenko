@@ -2,6 +2,8 @@
 using AutodDB_Orlenko.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,6 +15,9 @@ namespace AutodDB_Orlenko
         {
             InitializeComponent();
 
+            // Подключаем событие загрузки формы
+            this.Load += Form1_Load;
+
             LoadOwners();
             LoadCars();
             LoadServices();
@@ -21,13 +26,9 @@ namespace AutodDB_Orlenko
             LoadCarsToComboBoxForService();
             LoadServicesToComboBox();
             LoadCarServicesGrid();
-
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void LoadOwners()
         {
@@ -445,5 +446,69 @@ namespace AutodDB_Orlenko
                     .ToList();
             }
         }
+
+        //------------------------------------------------------------------------------------------------
+
+        bool _keelLaetud = false;
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            _keelLaetud = false;
+
+            comboLanguage.Items.Clear();
+            comboLanguage.Items.Add("Eesti");
+            comboLanguage.Items.Add("English");
+
+            string savedLang = Properties.Settings.Default.UserLanguage;
+            comboLanguage.SelectedItem = savedLang == "en-US" ? "English" : "Eesti";
+
+            _keelLaetud = true;
+        }
+
+
+
+        private void ApplyResourcesToControl(Control ctrl, ComponentResourceManager res)
+        {
+            res.ApplyResources(ctrl, ctrl.Name);
+
+            foreach (Control child in ctrl.Controls)
+                ApplyResourcesToControl(child, res);
+        }
+
+
+
+
+        private void ChangeLanguage(string lang)
+        {
+            // Сохраняем выбор
+            Properties.Settings.Default.UserLanguage = lang;
+            Properties.Settings.Default.Save();
+
+            // Меняем культуру
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+
+            // Применяем ресурсы
+            var res = new ComponentResourceManager(typeof(Form1));
+            ApplyResourcesToControl(this, res);
+            res.ApplyResources(this, "$this"); // для заголовка формы
+        }
+
+
+
+
+
+        private void comboLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!_keelLaetud)
+                return;
+
+            if (comboLanguage.SelectedItem.ToString() == "English")
+                ChangeLanguage("en-US");
+            else
+                ChangeLanguage("et-EE");
+        }
+
+
     }
 }

@@ -34,6 +34,7 @@
             dataGridViewOmanukud = new DataGridView();
             tabControl1 = new TabControl();
             Owners = new TabPage();
+            comboLanguage = new ComboBox();
             labelOwners = new Label();
             ShopName = new Label();
             DeleteBtnOwners = new Button();
@@ -106,20 +107,15 @@
             // 
             pictureBox2.ErrorImage = Properties.Resources.Без_названия;
             pictureBox2.Image = Properties.Resources.garaz__1_;
-            pictureBox2.InitialImage = (Image)resources.GetObject("pictureBox2.InitialImage");
-            pictureBox2.Location = new Point(525, 65);
+            resources.ApplyResources(pictureBox2, "pictureBox2");
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(413, 635);
-            pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
             // dataGridViewOmanukud
             // 
             dataGridViewOmanukud.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewOmanukud.Location = new Point(24, 255);
+            resources.ApplyResources(dataGridViewOmanukud, "dataGridViewOmanukud");
             dataGridViewOmanukud.Name = "dataGridViewOmanukud";
-            dataGridViewOmanukud.Size = new Size(475, 445);
-            dataGridViewOmanukud.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -127,18 +123,16 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(Service);
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 186);
+            resources.ApplyResources(tabControl1, "tabControl1");
             tabControl1.HotTrack = true;
-            tabControl1.Location = new Point(12, 12);
             tabControl1.Multiline = true;
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1707, 907);
-            tabControl1.TabIndex = 1;
             // 
             // Owners
             // 
             Owners.BackColor = Color.Silver;
+            Owners.Controls.Add(comboLanguage);
             Owners.Controls.Add(labelOwners);
             Owners.Controls.Add(ShopName);
             Owners.Controls.Add(DeleteBtnOwners);
@@ -149,86 +143,60 @@
             Owners.Controls.Add(textBoxOwnerPhone);
             Owners.Controls.Add(pictureBox2);
             Owners.Controls.Add(dataGridViewOmanukud);
-            Owners.Location = new Point(4, 30);
+            resources.ApplyResources(Owners, "Owners");
             Owners.Name = "Owners";
-            Owners.Padding = new Padding(3);
-            Owners.Size = new Size(1699, 873);
-            Owners.TabIndex = 0;
-            Owners.Text = "Owners";
+            // 
+            // comboLanguage
+            // 
+            comboLanguage.FormattingEnabled = true;
+            resources.ApplyResources(comboLanguage, "comboLanguage");
+            comboLanguage.Name = "comboLanguage";
             // 
             // labelOwners
             // 
-            labelOwners.Font = new Font("Segoe UI Black", 20F);
-            labelOwners.Location = new Point(24, 219);
+            resources.ApplyResources(labelOwners, "labelOwners");
             labelOwners.Name = "labelOwners";
-            labelOwners.Size = new Size(166, 33);
-            labelOwners.TabIndex = 11;
-            labelOwners.Text = "Owners:";
             // 
             // ShopName
             // 
-            ShopName.Font = new Font("Microsoft PhagsPa", 28F);
-            ShopName.Location = new Point(525, 3);
+            resources.ApplyResources(ShopName, "ShopName");
             ShopName.Name = "ShopName";
-            ShopName.Size = new Size(430, 59);
-            ShopName.TabIndex = 10;
-            ShopName.Text = "ORLENKO Car Service";
             // 
             // DeleteBtnOwners
             // 
-            DeleteBtnOwners.AutoSize = true;
+            resources.ApplyResources(DeleteBtnOwners, "DeleteBtnOwners");
             DeleteBtnOwners.BackColor = Color.LightCoral;
-            DeleteBtnOwners.Location = new Point(24, 135);
             DeleteBtnOwners.Name = "DeleteBtnOwners";
-            DeleteBtnOwners.Size = new Size(99, 45);
-            DeleteBtnOwners.TabIndex = 9;
-            DeleteBtnOwners.Text = "Delete";
             DeleteBtnOwners.UseVisualStyleBackColor = false;
             DeleteBtnOwners.Click += DeleteBtnOwners_Click;
             // 
             // AddBtnOwners
             // 
-            AddBtnOwners.AutoSize = true;
+            resources.ApplyResources(AddBtnOwners, "AddBtnOwners");
             AddBtnOwners.BackColor = Color.YellowGreen;
-            AddBtnOwners.Location = new Point(195, 135);
             AddBtnOwners.Name = "AddBtnOwners";
-            AddBtnOwners.Size = new Size(99, 45);
-            AddBtnOwners.TabIndex = 8;
-            AddBtnOwners.Text = "Add";
             AddBtnOwners.UseVisualStyleBackColor = false;
             AddBtnOwners.Click += AddBtnOwners_Click;
             // 
             // textBoxOwnerName
             // 
-            textBoxOwnerName.Location = new Point(165, 42);
+            resources.ApplyResources(textBoxOwnerName, "textBoxOwnerName");
             textBoxOwnerName.Name = "textBoxOwnerName";
-            textBoxOwnerName.Size = new Size(129, 29);
-            textBoxOwnerName.TabIndex = 7;
             // 
             // labelNumber
             // 
-            labelNumber.Font = new Font("Segoe UI Black", 15F);
-            labelNumber.Location = new Point(24, 80);
+            resources.ApplyResources(labelNumber, "labelNumber");
             labelNumber.Name = "labelNumber";
-            labelNumber.Size = new Size(99, 42);
-            labelNumber.TabIndex = 6;
-            labelNumber.Text = "Number:";
             // 
             // labelFullName
             // 
-            labelFullName.Font = new Font("Segoe UI Black", 15F);
-            labelFullName.Location = new Point(24, 39);
+            resources.ApplyResources(labelFullName, "labelFullName");
             labelFullName.Name = "labelFullName";
-            labelFullName.Size = new Size(123, 30);
-            labelFullName.TabIndex = 5;
-            labelFullName.Text = "Full Name:";
             // 
             // textBoxOwnerPhone
             // 
-            textBoxOwnerPhone.Location = new Point(165, 83);
+            resources.ApplyResources(textBoxOwnerPhone, "textBoxOwnerPhone");
             textBoxOwnerPhone.Name = "textBoxOwnerPhone";
-            textBoxOwnerPhone.Size = new Size(129, 29);
-            textBoxOwnerPhone.TabIndex = 4;
             // 
             // tabPage2
             // 
@@ -247,134 +215,88 @@
             tabPage2.Controls.Add(label2);
             tabPage2.Controls.Add(dataGridViewCars);
             tabPage2.Controls.Add(label1);
-            tabPage2.Location = new Point(4, 30);
+            resources.ApplyResources(tabPage2, "tabPage2");
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1699, 873);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Cars";
             // 
             // CarsAddBtn
             // 
             CarsAddBtn.BackColor = Color.YellowGreen;
-            CarsAddBtn.Location = new Point(140, 145);
+            resources.ApplyResources(CarsAddBtn, "CarsAddBtn");
             CarsAddBtn.Name = "CarsAddBtn";
-            CarsAddBtn.Size = new Size(89, 45);
-            CarsAddBtn.TabIndex = 23;
-            CarsAddBtn.Text = "Add";
             CarsAddBtn.UseVisualStyleBackColor = false;
             CarsAddBtn.Click += CarsAddBtn_Click;
             // 
             // CarsDeleteBtn
             // 
             CarsDeleteBtn.BackColor = Color.LightCoral;
-            CarsDeleteBtn.Location = new Point(21, 145);
+            resources.ApplyResources(CarsDeleteBtn, "CarsDeleteBtn");
             CarsDeleteBtn.Name = "CarsDeleteBtn";
-            CarsDeleteBtn.Size = new Size(89, 45);
-            CarsDeleteBtn.TabIndex = 22;
-            CarsDeleteBtn.Text = "Delete";
             CarsDeleteBtn.UseVisualStyleBackColor = false;
             CarsDeleteBtn.Click += CarsDeleteBtn_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.porshe;
-            pictureBox1.Location = new Point(588, 65);
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(413, 635);
-            pictureBox1.TabIndex = 21;
             pictureBox1.TabStop = false;
             // 
             // label6
             // 
-            label6.Font = new Font("Segoe UI Black", 20F);
-            label6.Location = new Point(21, 210);
+            resources.ApplyResources(label6, "label6");
             label6.Name = "label6";
-            label6.Size = new Size(100, 42);
-            label6.TabIndex = 15;
-            label6.Text = "Cars:";
             // 
             // comboBoxOwner
             // 
             comboBoxOwner.FormattingEnabled = true;
-            comboBoxOwner.Location = new Point(108, 97);
+            resources.ApplyResources(comboBoxOwner, "comboBoxOwner");
             comboBoxOwner.Name = "comboBoxOwner";
-            comboBoxOwner.Size = new Size(121, 29);
-            comboBoxOwner.TabIndex = 20;
             // 
             // textBoxRegNumber
             // 
-            textBoxRegNumber.Location = new Point(245, 67);
+            resources.ApplyResources(textBoxRegNumber, "textBoxRegNumber");
             textBoxRegNumber.Name = "textBoxRegNumber";
-            textBoxRegNumber.Size = new Size(100, 29);
-            textBoxRegNumber.TabIndex = 19;
             // 
             // textBoxModel
             // 
-            textBoxModel.Location = new Point(108, 39);
+            resources.ApplyResources(textBoxModel, "textBoxModel");
             textBoxModel.Name = "textBoxModel";
-            textBoxModel.Size = new Size(100, 29);
-            textBoxModel.TabIndex = 18;
             // 
             // textBoxBrand
             // 
-            textBoxBrand.Location = new Point(108, 8);
+            resources.ApplyResources(textBoxBrand, "textBoxBrand");
             textBoxBrand.Name = "textBoxBrand";
-            textBoxBrand.Size = new Size(100, 29);
-            textBoxBrand.TabIndex = 17;
             // 
             // label5
             // 
-            label5.Font = new Font("Segoe UI Black", 15F);
-            label5.Location = new Point(21, 97);
+            resources.ApplyResources(label5, "label5");
             label5.Name = "label5";
-            label5.Size = new Size(100, 30);
-            label5.TabIndex = 16;
-            label5.Text = "Owner:";
             // 
             // label4
             // 
-            label4.Font = new Font("Segoe UI Black", 15F);
-            label4.Location = new Point(21, 64);
+            resources.ApplyResources(label4, "label4");
             label4.Name = "label4";
-            label4.Size = new Size(234, 33);
-            label4.TabIndex = 15;
-            label4.Text = "RegistrationNumber:";
             // 
             // label3
             // 
-            label3.Font = new Font("Segoe UI Black", 15F);
-            label3.Location = new Point(21, 34);
+            resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
-            label3.Size = new Size(100, 30);
-            label3.TabIndex = 14;
-            label3.Text = "Model:";
             // 
             // label2
             // 
-            label2.Font = new Font("Segoe UI Black", 15F);
-            label2.Location = new Point(21, 3);
+            resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Size = new Size(100, 28);
-            label2.TabIndex = 13;
-            label2.Text = "Brand:";
             // 
             // dataGridViewCars
             // 
             dataGridViewCars.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCars.Location = new Point(21, 255);
+            resources.ApplyResources(dataGridViewCars, "dataGridViewCars");
             dataGridViewCars.Name = "dataGridViewCars";
-            dataGridViewCars.Size = new Size(542, 445);
-            dataGridViewCars.TabIndex = 12;
             // 
             // label1
             // 
-            label1.Font = new Font("Microsoft PhagsPa", 28F);
-            label1.Location = new Point(588, 5);
+            resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            label1.Size = new Size(430, 59);
-            label1.TabIndex = 11;
-            label1.Text = "ORLENKO Car Service";
             // 
             // Service
             // 
@@ -389,102 +311,67 @@
             Service.Controls.Add(dataGridViewService);
             Service.Controls.Add(pictureBox3);
             Service.Controls.Add(label7);
-            Service.Location = new Point(4, 30);
+            resources.ApplyResources(Service, "Service");
             Service.Name = "Service";
-            Service.Padding = new Padding(3);
-            Service.Size = new Size(1699, 873);
-            Service.TabIndex = 2;
-            Service.Text = "Service";
             // 
             // buttonServiceAdd
             // 
             buttonServiceAdd.BackColor = Color.YellowGreen;
-            buttonServiceAdd.Location = new Point(121, 128);
+            resources.ApplyResources(buttonServiceAdd, "buttonServiceAdd");
             buttonServiceAdd.Name = "buttonServiceAdd";
-            buttonServiceAdd.Size = new Size(89, 45);
-            buttonServiceAdd.TabIndex = 24;
-            buttonServiceAdd.Text = "Add";
             buttonServiceAdd.UseVisualStyleBackColor = false;
             buttonServiceAdd.Click += buttonServiceAdd_Click_1;
             // 
             // buttonServiceDelete
             // 
             buttonServiceDelete.BackColor = Color.LightCoral;
-            buttonServiceDelete.Location = new Point(16, 128);
+            resources.ApplyResources(buttonServiceDelete, "buttonServiceDelete");
             buttonServiceDelete.Name = "buttonServiceDelete";
-            buttonServiceDelete.Size = new Size(89, 45);
-            buttonServiceDelete.TabIndex = 23;
-            buttonServiceDelete.Text = "Delete";
             buttonServiceDelete.UseVisualStyleBackColor = false;
             buttonServiceDelete.Click += buttonServiceDelete_Click;
             // 
             // label10
             // 
-            label10.Font = new Font("Segoe UI Black", 20F);
-            label10.Location = new Point(6, 215);
+            resources.ApplyResources(label10, "label10");
             label10.Name = "label10";
-            label10.Size = new Size(120, 42);
-            label10.TabIndex = 19;
-            label10.Text = "Service:";
             // 
             // textBoxServicePrice
             // 
-            textBoxServicePrice.Location = new Point(110, 78);
+            resources.ApplyResources(textBoxServicePrice, "textBoxServicePrice");
             textBoxServicePrice.Name = "textBoxServicePrice";
-            textBoxServicePrice.Size = new Size(100, 29);
-            textBoxServicePrice.TabIndex = 18;
             // 
             // textBoxServiceName
             // 
-            textBoxServiceName.Location = new Point(110, 36);
+            resources.ApplyResources(textBoxServiceName, "textBoxServiceName");
             textBoxServiceName.Name = "textBoxServiceName";
-            textBoxServiceName.Size = new Size(100, 29);
-            textBoxServiceName.TabIndex = 17;
             // 
             // label9
             // 
-            label9.Font = new Font("Segoe UI Black", 15F);
-            label9.Location = new Point(16, 74);
+            resources.ApplyResources(label9, "label9");
             label9.Name = "label9";
-            label9.Size = new Size(100, 33);
-            label9.TabIndex = 16;
-            label9.Text = "Price:";
             // 
             // label8
             // 
-            label8.Font = new Font("Segoe UI Black", 15F);
-            label8.Location = new Point(16, 33);
+            resources.ApplyResources(label8, "label8");
             label8.Name = "label8";
-            label8.Size = new Size(100, 29);
-            label8.TabIndex = 15;
-            label8.Text = "Name:";
             // 
             // dataGridViewService
             // 
             dataGridViewService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewService.Location = new Point(6, 260);
+            resources.ApplyResources(dataGridViewService, "dataGridViewService");
             dataGridViewService.Name = "dataGridViewService";
-            dataGridViewService.Size = new Size(569, 282);
-            dataGridViewService.TabIndex = 14;
             // 
             // pictureBox3
             // 
             pictureBox3.BackgroundImage = Properties.Resources.BMW_e60__1_;
-            pictureBox3.InitialImage = (Image)resources.GetObject("pictureBox3.InitialImage");
-            pictureBox3.Location = new Point(581, 65);
+            resources.ApplyResources(pictureBox3, "pictureBox3");
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(416, 626);
-            pictureBox3.TabIndex = 13;
             pictureBox3.TabStop = false;
             // 
             // label7
             // 
-            label7.Font = new Font("Microsoft PhagsPa", 28F);
-            label7.Location = new Point(590, 3);
+            resources.ApplyResources(label7, "label7");
             label7.Name = "label7";
-            label7.Size = new Size(430, 59);
-            label7.TabIndex = 12;
-            label7.Text = "ORLENKO Car Service";
             // 
             // tabPage1
             // 
@@ -503,136 +390,89 @@
             tabPage1.Controls.Add(comboBoxService);
             tabPage1.Controls.Add(label13);
             tabPage1.Controls.Add(label11);
-            tabPage1.Location = new Point(4, 30);
+            resources.ApplyResources(tabPage1, "tabPage1");
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1699, 873);
-            tabPage1.TabIndex = 3;
-            tabPage1.Text = "ServiceCar";
             // 
             // textBoxMileage
             // 
-            textBoxMileage.Location = new Point(156, 126);
+            resources.ApplyResources(textBoxMileage, "textBoxMileage");
             textBoxMileage.Name = "textBoxMileage";
-            textBoxMileage.Size = new Size(122, 29);
-            textBoxMileage.TabIndex = 38;
             // 
             // label20
             // 
-            label20.Font = new Font("Segoe UI Black", 15F);
-            label20.Location = new Point(15, 126);
+            resources.ApplyResources(label20, "label20");
             label20.Name = "label20";
-            label20.Size = new Size(155, 29);
-            label20.TabIndex = 36;
-            label20.Text = "Car Mileage:  ";
             // 
             // comboBoxCar
             // 
             comboBoxCar.FormattingEnabled = true;
-            comboBoxCar.Location = new Point(123, 50);
+            resources.ApplyResources(comboBoxCar, "comboBoxCar");
             comboBoxCar.Name = "comboBoxCar";
-            comboBoxCar.Size = new Size(121, 29);
-            comboBoxCar.TabIndex = 32;
             // 
             // label16
             // 
-            label16.Font = new Font("Segoe UI Black", 15F);
-            label16.Location = new Point(15, 47);
+            resources.ApplyResources(label16, "label16");
             label16.Name = "label16";
-            label16.Size = new Size(169, 29);
-            label16.TabIndex = 28;
-            label16.Text = "Car:  ";
             // 
             // AddbtnServiceCars
             // 
             AddbtnServiceCars.BackColor = Color.YellowGreen;
-            AddbtnServiceCars.Location = new Point(191, 186);
+            resources.ApplyResources(AddbtnServiceCars, "AddbtnServiceCars");
             AddbtnServiceCars.Name = "AddbtnServiceCars";
-            AddbtnServiceCars.Size = new Size(87, 46);
-            AddbtnServiceCars.TabIndex = 27;
-            AddbtnServiceCars.Text = "Add";
             AddbtnServiceCars.UseVisualStyleBackColor = false;
             AddbtnServiceCars.Click += AddbtnServiceCars_Click;
             // 
             // DeletebtnServiceCar
             // 
             DeletebtnServiceCar.BackColor = Color.LightCoral;
-            DeletebtnServiceCar.Location = new Point(15, 186);
+            resources.ApplyResources(DeletebtnServiceCar, "DeletebtnServiceCar");
             DeletebtnServiceCar.Name = "DeletebtnServiceCar";
-            DeletebtnServiceCar.Size = new Size(87, 46);
-            DeletebtnServiceCar.TabIndex = 26;
-            DeletebtnServiceCar.Text = "Delete";
             DeletebtnServiceCar.UseVisualStyleBackColor = false;
             DeletebtnServiceCar.Click += DeletebtnServiceCar_Click;
             // 
             // label15
             // 
-            label15.Font = new Font("Segoe UI Black", 20F);
-            label15.Location = new Point(15, 311);
+            resources.ApplyResources(label15, "label15");
             label15.Name = "label15";
-            label15.Size = new Size(263, 39);
-            label15.TabIndex = 25;
-            label15.Text = "Service cars:";
             // 
             // label14
             // 
-            label14.Font = new Font("Microsoft PhagsPa", 28F);
-            label14.Location = new Point(596, 0);
+            resources.ApplyResources(label14, "label14");
             label14.Name = "label14";
-            label14.Size = new Size(430, 63);
-            label14.TabIndex = 24;
-            label14.Text = "ORLENKO Car Service";
             // 
             // pictureBox4
             // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.Location = new Point(637, 84);
+            resources.ApplyResources(pictureBox4, "pictureBox4");
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(360, 616);
-            pictureBox4.TabIndex = 23;
             pictureBox4.TabStop = false;
             // 
             // dataGridViewServiceCar
             // 
             dataGridViewServiceCar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewServiceCar.Location = new Point(15, 365);
+            resources.ApplyResources(dataGridViewServiceCar, "dataGridViewServiceCar");
             dataGridViewServiceCar.Name = "dataGridViewServiceCar";
-            dataGridViewServiceCar.Size = new Size(616, 335);
-            dataGridViewServiceCar.TabIndex = 22;
             // 
             // comboBoxOwner2
             // 
             comboBoxOwner2.FormattingEnabled = true;
-            comboBoxOwner2.Location = new Point(123, 84);
+            resources.ApplyResources(comboBoxOwner2, "comboBoxOwner2");
             comboBoxOwner2.Name = "comboBoxOwner2";
-            comboBoxOwner2.Size = new Size(121, 29);
-            comboBoxOwner2.TabIndex = 21;
             // 
             // comboBoxService
             // 
             comboBoxService.FormattingEnabled = true;
-            comboBoxService.Location = new Point(123, 15);
+            resources.ApplyResources(comboBoxService, "comboBoxService");
             comboBoxService.Name = "comboBoxService";
-            comboBoxService.Size = new Size(121, 29);
-            comboBoxService.TabIndex = 19;
             // 
             // label13
             // 
-            label13.Font = new Font("Segoe UI Black", 15F);
-            label13.Location = new Point(15, 84);
+            resources.ApplyResources(label13, "label13");
             label13.Name = "label13";
-            label13.Size = new Size(92, 29);
-            label13.TabIndex = 18;
-            label13.Text = "Owner:";
             // 
             // label11
             // 
-            label11.Font = new Font("Segoe UI Black", 15F);
-            label11.Location = new Point(15, 12);
+            resources.ApplyResources(label11, "label11");
             label11.Name = "label11";
-            label11.Size = new Size(169, 29);
-            label11.TabIndex = 16;
-            label11.Text = " Service:";
             // 
             // sqlCommand1
             // 
@@ -642,21 +482,20 @@
             // contextMenuStrip1
             // 
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(61, 4);
+            resources.ApplyResources(contextMenuStrip1, "contextMenuStrip1");
             // 
             // contextMenuStrip2
             // 
             contextMenuStrip2.Name = "contextMenuStrip2";
-            contextMenuStrip2.Size = new Size(61, 4);
+            resources.ApplyResources(contextMenuStrip2, "contextMenuStrip2");
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1025, 748);
             Controls.Add(tabControl1);
             Name = "Form1";
-            Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).EndInit();
             tabControl1.ResumeLayout(false);
@@ -736,5 +575,6 @@
         private TextBox textBoxMileage;
         private Label label20;
         private ContextMenuStrip contextMenuStrip2;
+        private ComboBox comboLanguage;
     }
 }

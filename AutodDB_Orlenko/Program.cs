@@ -1,15 +1,22 @@
+﻿using System.Globalization;
+using System.Threading;
+using System.Windows.Forms;
+
 namespace AutodDB_Orlenko
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // Получаем сохранённый язык из настроек
+            string lang = Properties.Settings.Default.UserLanguage;
+            if (string.IsNullOrWhiteSpace(lang))
+                lang = "et-EE"; // по умолчанию эстонский
+
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
+
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
