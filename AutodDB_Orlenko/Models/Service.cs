@@ -12,6 +12,10 @@ namespace AutodDB_Orlenko.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
 
+        // Новые поля для времени работы услуги
+        public TimeSpan StartTime { get; set; }    // Когда начинается работа над этой услугой
+        public TimeSpan Duration { get; set; }     // Сколько времени занимает эта услуга
+
         public ICollection<CarService> CarServices { get; set; }
     }
 }

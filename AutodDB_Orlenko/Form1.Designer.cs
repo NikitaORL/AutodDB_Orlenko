@@ -86,6 +86,8 @@
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             contextMenuStrip1 = new ContextMenuStrip(components);
             contextMenuStrip2 = new ContextMenuStrip(components);
+            textBoxServiceStartTime = new TextBox();
+            textBoxServiceDuration = new TextBox();
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
@@ -379,6 +381,8 @@
             // Service
             // 
             Service.BackColor = Color.Silver;
+            Service.Controls.Add(textBoxServiceDuration);
+            Service.Controls.Add(textBoxServiceStartTime);
             Service.Controls.Add(buttonServiceAdd);
             Service.Controls.Add(buttonServiceDelete);
             Service.Controls.Add(label10);
@@ -649,6 +653,20 @@
             contextMenuStrip2.Name = "contextMenuStrip2";
             contextMenuStrip2.Size = new Size(61, 4);
             // 
+            // textBoxServiceStartTime
+            // 
+            textBoxServiceStartTime.Location = new Point(332, 36);
+            textBoxServiceStartTime.Name = "textBoxServiceStartTime";
+            textBoxServiceStartTime.Size = new Size(100, 29);
+            textBoxServiceStartTime.TabIndex = 25;
+            // 
+            // textBoxServiceDuration
+            // 
+            textBoxServiceDuration.Location = new Point(332, 78);
+            textBoxServiceDuration.Name = "textBoxServiceDuration";
+            textBoxServiceDuration.Size = new Size(100, 29);
+            textBoxServiceDuration.TabIndex = 26;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -736,5 +754,7 @@
         private TextBox textBoxMileage;
         private Label label20;
         private ContextMenuStrip contextMenuStrip2;
+        private TextBox textBoxServiceDuration;
+        private TextBox textBoxServiceStartTime;
     }
 }

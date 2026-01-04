@@ -219,7 +219,10 @@ namespace AutodDB_Orlenko
                     {
                         s.Id,
                         s.Name,
-                        s.Price
+                        s.Price,
+                        StartTime = s.StartTime.ToString(@"hh\:mm"), // Форматируем время
+                        Duration = $"{s.Duration.TotalHours} tundi", // Показываем в часах
+                        EndTime = (s.StartTime + s.Duration).ToString(@"hh\:mm") // Время окончания
                     })
                     .ToList();
             }
@@ -231,8 +234,11 @@ namespace AutodDB_Orlenko
         {
             string name = textBoxServiceName.Text.Trim();
             string priceText = textBoxServicePrice.Text.Trim();
+            string startTimeText = textBoxServiceStartTime.Text.Trim();
+            string durationText = textBoxServiceDuration.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(priceText))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(priceText) ||
+                string.IsNullOrWhiteSpace(startTimeText) || string.IsNullOrWhiteSpace(durationText))
             {
                 MessageBox.Show("Palun siseta kõik andmed!!!");
                 return;
@@ -244,12 +250,50 @@ namespace AutodDB_Orlenko
                 return;
             }
 
+            // Парсим время начала
+            if (!TimeSpan.TryParse(startTimeText, out TimeSpan startTime))
+            {
+                MessageBox.Show("Sisesta korrektne algusaeg (näiteks 09:00 või 9)!");
+                return;
+            }
+
+            // Парсим продолжительность (в часах)
+            if (!int.TryParse(durationText, out int durationHours) || durationHours <= 0)
+            {
+                MessageBox.Show("Sisesta korrektne kestus tundides (näiteks 2)!");
+                return;
+            }
+
+            TimeSpan duration = TimeSpan.FromHours(durationHours);
+            TimeSpan endTime = startTime + duration;
+
+            // ПРОВЕРКА ПЕРЕСЕЧЕНИЯ ВРЕМЕНИ
             using (var context = new AutoDbContext())
             {
+                // Получаем все существующие услуги
+                var existingServices = context.Services.ToList();
+
+                foreach (var existingService in existingServices)
+                {
+                    TimeSpan existingStart = existingService.StartTime;
+                    TimeSpan existingEnd = existingService.StartTime + existingService.Duration;
+
+                    // Проверяем пересечение:
+                    // Новое время НЕ должно начинаться раньше окончания существующего
+                    // И НЕ должно заканчиваться позже начала существующего
+                    if (startTime < existingEnd && endTime > existingStart)
+                    {
+                        MessageBox.Show($"See aeg on juba hõivatud! {existingService.Name} kestab {existingStart:hh\\:mm}-{existingEnd:hh\\:mm}");
+                        return;
+                    }
+                }
+
                 var service = new Service
                 {
                     Name = name,
-                    Price = price
+                    Price = price,
+                    StartTime = startTime,
+                    Duration = duration
                 };
 
                 context.Services.Add(service);
@@ -258,6 +302,8 @@ namespace AutodDB_Orlenko
 
             textBoxServiceName.Clear();
             textBoxServicePrice.Clear();
+            textBoxServiceStartTime.Clear();
+            textBoxServiceDuration.Clear();
 
             LoadServices();
             LoadServicesToComboBox();
@@ -445,5 +491,7 @@ namespace AutodDB_Orlenko
                     .ToList();
             }
         }
+
+
     }
 }
