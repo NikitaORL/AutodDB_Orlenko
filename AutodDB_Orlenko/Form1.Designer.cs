@@ -58,6 +58,9 @@
             dataGridViewCars = new DataGridView();
             label1 = new Label();
             Service = new TabPage();
+            label18 = new Label();
+            label17 = new Label();
+            label12 = new Label();
             textBoxServiceDuration = new TextBox();
             textBoxServiceStartTime = new TextBox();
             buttonServiceAdd = new Button();
@@ -88,9 +91,6 @@
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             contextMenuStrip1 = new ContextMenuStrip(components);
             contextMenuStrip2 = new ContextMenuStrip(components);
-            label12 = new Label();
-            label17 = new Label();
-            label18 = new Label();
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
@@ -406,16 +406,44 @@
             Service.TabIndex = 2;
             Service.Text = "Service";
             // 
+            // label18
+            // 
+            label18.Font = new Font("Segoe UI Black", 10F);
+            label18.Location = new Point(16, 188);
+            label18.Name = "label18";
+            label18.Size = new Size(337, 33);
+            label18.TabIndex = 29;
+            label18.Text = "We are open from 8:00 to 21:00";
+            // 
+            // label17
+            // 
+            label17.Font = new Font("Segoe UI Black", 15F);
+            label17.Location = new Point(226, 75);
+            label17.Name = "label17";
+            label17.Size = new Size(110, 33);
+            label17.TabIndex = 28;
+            label17.Text = "Duration:";
+            // 
+            // label12
+            // 
+            label12.Font = new Font("Segoe UI Black", 15F);
+            label12.Location = new Point(226, 36);
+            label12.Name = "label12";
+            label12.Size = new Size(137, 33);
+            label12.TabIndex = 27;
+            label12.Text = "Start Time:";
+            // 
             // textBoxServiceDuration
             // 
-            textBoxServiceDuration.Location = new Point(361, 77);
+            textBoxServiceDuration.Location = new Point(372, 79);
             textBoxServiceDuration.Name = "textBoxServiceDuration";
-            textBoxServiceDuration.Size = new Size(100, 29);
+            textBoxServiceDuration.Size = new Size(110, 29);
             textBoxServiceDuration.TabIndex = 26;
+            textBoxServiceDuration.TextChanged += textBoxServiceDuration_TextChanged;
             // 
             // textBoxServiceStartTime
             // 
-            textBoxServiceStartTime.Location = new Point(351, 36);
+            textBoxServiceStartTime.Location = new Point(372, 36);
             textBoxServiceStartTime.Name = "textBoxServiceStartTime";
             textBoxServiceStartTime.Size = new Size(110, 29);
             textBoxServiceStartTime.TabIndex = 25;
@@ -672,33 +700,6 @@
             // 
             contextMenuStrip2.Name = "contextMenuStrip2";
             contextMenuStrip2.Size = new Size(61, 4);
-            // 
-            // label12
-            // 
-            label12.Font = new Font("Segoe UI Black", 15F);
-            label12.Location = new Point(226, 36);
-            label12.Name = "label12";
-            label12.Size = new Size(137, 33);
-            label12.TabIndex = 27;
-            label12.Text = "Start Time:";
-            // 
-            // label17
-            // 
-            label17.Font = new Font("Segoe UI Black", 15F);
-            label17.Location = new Point(226, 75);
-            label17.Name = "label17";
-            label17.Size = new Size(110, 33);
-            label17.TabIndex = 28;
-            label17.Text = "Duration:";
-            // 
-            // label18
-            // 
-            label18.Font = new Font("Segoe UI Black", 10F);
-            label18.Location = new Point(16, 188);
-            label18.Name = "label18";
-            label18.Size = new Size(337, 33);
-            label18.TabIndex = 29;
-            label18.Text = "We are open from 8:00 to 21:00";
             // 
             // Form1
             // 

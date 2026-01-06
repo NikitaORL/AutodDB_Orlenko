@@ -220,9 +220,9 @@ namespace AutodDB_Orlenko
                         s.Id,
                         s.Name,
                         s.Price,
-                        StartTime = s.StartTime.ToString(@"hh\:mm"), // Форматируем время
-                        Duration = $"{s.Duration.TotalHours} tundi", // Показываем в часах
-                        EndTime = (s.StartTime + s.Duration).ToString(@"hh\:mm") // Время окончания
+                        StartTime = s.StartTime.ToString(@"hh\:mm"), // формат  время
+                        Duration = $"{s.Duration.TotalHours} tundi", //  в часах
+                        EndTime = (s.StartTime + s.Duration).ToString(@"hh\:mm") // время окончания
                     })
                     .ToList();
             }
@@ -266,7 +266,7 @@ namespace AutodDB_Orlenko
             TimeSpan duration = TimeSpan.FromHours(durationHours);
             TimeSpan endTime = startTime + duration;
 
-            //  Рабочее время0
+            //  Рабочее время
             TimeSpan workDayStart = new TimeSpan(8, 0, 0);
             TimeSpan workDayEnd = new TimeSpan(21, 0, 0);
 
@@ -488,8 +488,8 @@ namespace AutodDB_Orlenko
                     .Include(cs => cs.Service)
                     .Select(cs => new
                     {
-                        cs.CarId,   
-                        cs.ServiceId, 
+                        cs.CarId,
+                        cs.ServiceId,
                         Owner = cs.Car.Owner.FullName,
                         Car = cs.Car.Brand + " " + cs.Car.Model + " (" + cs.Car.RegistrationNumber + ")",
                         Service = cs.Service.Name,
@@ -508,9 +508,9 @@ namespace AutodDB_Orlenko
                 dataGridViewServiceCar.Columns["ServiceId"].Visible = false;
         }
 
+        private void textBoxServiceDuration_TextChanged(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }
