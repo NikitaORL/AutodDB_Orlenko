@@ -29,7 +29,7 @@ namespace AutodDB_Orlenko.Data
             modelBuilder.Entity<CarService>()
                 .HasOne(cs => cs.Service)
                 .WithMany(s => s.CarServices)
-                .HasForeignKey(cs => cs.ServiceId);
+                .HasForeignKey(cs => cs.ServiceId); //
         }
     }
 }
