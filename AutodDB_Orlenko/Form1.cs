@@ -219,7 +219,10 @@ namespace AutodDB_Orlenko
                     {
                         s.Id,
                         s.Name,
-                        s.Price
+                        s.Price,
+                        StartTime = s.StartTime.ToString(@"hh\:mm"), // Форматируем время
+                        Duration = $"{s.Duration.TotalHours} tundi", // Показываем в часах
+                        EndTime = (s.StartTime + s.Duration).ToString(@"hh\:mm") // Время окончания
                     })
                     .ToList();
             }
@@ -231,10 +234,13 @@ namespace AutodDB_Orlenko
         {
             string name = textBoxServiceName.Text.Trim();
             string priceText = textBoxServicePrice.Text.Trim();
+            string startTimeText = textBoxServiceStartTime.Text.Trim();
+            string durationText = textBoxServiceDuration.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(priceText))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(priceText) ||
+                string.IsNullOrWhiteSpace(startTimeText) || string.IsNullOrWhiteSpace(durationText))
             {
-                MessageBox.Show("Palun siseta kõik andmed!!!");
+                MessageBox.Show("Palun sisesta kõik andmed!!!");
                 return;
             }
 
@@ -244,12 +250,56 @@ namespace AutodDB_Orlenko
                 return;
             }
 
+            if (!TimeSpan.TryParse(startTimeText, out TimeSpan startTime))
+            {
+                MessageBox.Show("Sisesta korrektne algusaeg (näiteks 09:00 või 9)!");
+                return;
+            }
+
+            // Длительность
+            if (!int.TryParse(durationText, out int durationHours) || durationHours <= 0)
+            {
+                MessageBox.Show("Sisesta korrektne kestus tundides (näiteks 2)!");
+                return;
+            }
+
+            TimeSpan duration = TimeSpan.FromHours(durationHours);
+            TimeSpan endTime = startTime + duration;
+
+            //  Рабочее время0
+            TimeSpan workDayStart = new TimeSpan(8, 0, 0);
+            TimeSpan workDayEnd = new TimeSpan(21, 0, 0);
+
+            // услуга в пределах рабочего времени
+            if (startTime < workDayStart || endTime > workDayEnd)
+            {
+                MessageBox.Show("Teenust saab lisada ainult ajavahemikus 08:00 – 21:00");
+                return;
+            }
+
+            // Проверка 
             using (var context = new AutoDbContext())
             {
+                var existingServices = context.Services.ToList();
+
+                foreach (var existingService in existingServices)
+                {
+                    TimeSpan existingStart = existingService.StartTime;
+                    TimeSpan existingEnd = existingService.StartTime + existingService.Duration;
+
+                    if (startTime < existingEnd && endTime > existingStart)
+                    {
+                        MessageBox.Show($"See aeg on juba hõivatud! {existingService.Name} kestab {existingStart:hh\\:mm}-{existingEnd:hh\\:mm}");
+                        return;
+                    }
+                }
+
                 var service = new Service
                 {
                     Name = name,
-                    Price = price
+                    Price = price,
+                    StartTime = startTime,
+                    Duration = duration
                 };
 
                 context.Services.Add(service);
@@ -258,10 +308,13 @@ namespace AutodDB_Orlenko
 
             textBoxServiceName.Clear();
             textBoxServicePrice.Clear();
+            textBoxServiceStartTime.Clear();
+            textBoxServiceDuration.Clear();
 
             LoadServices();
             LoadServicesToComboBox();
         }
+
 
         private void buttonServiceDelete_Click(object sender, EventArgs e)
         {
@@ -435,15 +488,29 @@ namespace AutodDB_Orlenko
                     .Include(cs => cs.Service)
                     .Select(cs => new
                     {
+                        cs.CarId,   
+                        cs.ServiceId, 
                         Owner = cs.Car.Owner.FullName,
-                        cs.CarId,
                         Car = cs.Car.Brand + " " + cs.Car.Model + " (" + cs.Car.RegistrationNumber + ")",
-                        cs.ServiceId,
                         Service = cs.Service.Name,
+                        StartTime = cs.Service.StartTime.ToString(@"hh\:mm"),          // начало услуги
+                        EndTime = (cs.Service.StartTime + cs.Service.Duration).ToString(@"hh\:mm"), // конец услуги
                         cs.Mileage
                     })
                     .ToList();
             }
+
+            // скрытиее
+            if (dataGridViewServiceCar.Columns["CarId"] != null)
+                dataGridViewServiceCar.Columns["CarId"].Visible = false;
+
+            if (dataGridViewServiceCar.Columns["ServiceId"] != null)
+                dataGridViewServiceCar.Columns["ServiceId"].Visible = false;
         }
+
+
+
+
+
     }
 }

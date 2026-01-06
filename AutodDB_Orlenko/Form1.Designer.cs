@@ -58,6 +58,8 @@
             dataGridViewCars = new DataGridView();
             label1 = new Label();
             Service = new TabPage();
+            textBoxServiceDuration = new TextBox();
+            textBoxServiceStartTime = new TextBox();
             buttonServiceAdd = new Button();
             buttonServiceDelete = new Button();
             label10 = new Label();
@@ -86,6 +88,9 @@
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             contextMenuStrip1 = new ContextMenuStrip(components);
             contextMenuStrip2 = new ContextMenuStrip(components);
+            label12 = new Label();
+            label17 = new Label();
+            label18 = new Label();
             pictureBox2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewOmanukud).BeginInit();
@@ -379,6 +384,11 @@
             // Service
             // 
             Service.BackColor = Color.Silver;
+            Service.Controls.Add(label18);
+            Service.Controls.Add(label17);
+            Service.Controls.Add(label12);
+            Service.Controls.Add(textBoxServiceDuration);
+            Service.Controls.Add(textBoxServiceStartTime);
             Service.Controls.Add(buttonServiceAdd);
             Service.Controls.Add(buttonServiceDelete);
             Service.Controls.Add(label10);
@@ -395,6 +405,20 @@
             Service.Size = new Size(1699, 873);
             Service.TabIndex = 2;
             Service.Text = "Service";
+            // 
+            // textBoxServiceDuration
+            // 
+            textBoxServiceDuration.Location = new Point(361, 77);
+            textBoxServiceDuration.Name = "textBoxServiceDuration";
+            textBoxServiceDuration.Size = new Size(100, 29);
+            textBoxServiceDuration.TabIndex = 26;
+            // 
+            // textBoxServiceStartTime
+            // 
+            textBoxServiceStartTime.Location = new Point(351, 36);
+            textBoxServiceStartTime.Name = "textBoxServiceStartTime";
+            textBoxServiceStartTime.Size = new Size(110, 29);
+            textBoxServiceStartTime.TabIndex = 25;
             // 
             // buttonServiceAdd
             // 
@@ -421,7 +445,7 @@
             // label10
             // 
             label10.Font = new Font("Segoe UI Black", 20F);
-            label10.Location = new Point(6, 215);
+            label10.Location = new Point(6, 367);
             label10.Name = "label10";
             label10.Size = new Size(120, 42);
             label10.TabIndex = 19;
@@ -462,7 +486,7 @@
             // dataGridViewService
             // 
             dataGridViewService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewService.Location = new Point(6, 260);
+            dataGridViewService.Location = new Point(6, 412);
             dataGridViewService.Name = "dataGridViewService";
             dataGridViewService.Size = new Size(569, 282);
             dataGridViewService.TabIndex = 14;
@@ -480,7 +504,7 @@
             // label7
             // 
             label7.Font = new Font("Microsoft PhagsPa", 28F);
-            label7.Location = new Point(590, 3);
+            label7.Location = new Point(581, 0);
             label7.Name = "label7";
             label7.Size = new Size(430, 59);
             label7.TabIndex = 12;
@@ -649,6 +673,33 @@
             contextMenuStrip2.Name = "contextMenuStrip2";
             contextMenuStrip2.Size = new Size(61, 4);
             // 
+            // label12
+            // 
+            label12.Font = new Font("Segoe UI Black", 15F);
+            label12.Location = new Point(226, 36);
+            label12.Name = "label12";
+            label12.Size = new Size(137, 33);
+            label12.TabIndex = 27;
+            label12.Text = "Start Time:";
+            // 
+            // label17
+            // 
+            label17.Font = new Font("Segoe UI Black", 15F);
+            label17.Location = new Point(226, 75);
+            label17.Name = "label17";
+            label17.Size = new Size(110, 33);
+            label17.TabIndex = 28;
+            label17.Text = "Duration:";
+            // 
+            // label18
+            // 
+            label18.Font = new Font("Segoe UI Black", 10F);
+            label18.Location = new Point(16, 188);
+            label18.Name = "label18";
+            label18.Size = new Size(337, 33);
+            label18.TabIndex = 29;
+            label18.Text = "We are open from 8:00 to 21:00";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -736,5 +787,10 @@
         private TextBox textBoxMileage;
         private Label label20;
         private ContextMenuStrip contextMenuStrip2;
+        private TextBox textBoxServiceDuration;
+        private TextBox textBoxServiceStartTime;
+        private Label label18;
+        private Label label17;
+        private Label label12;
     }
 }
